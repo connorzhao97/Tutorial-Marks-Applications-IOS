@@ -7,6 +7,11 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestoreSwift
+
+let db = Firestore.firestore()
+let studentCollection = db.collection("ios_students")
+public var students = [Student]()
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

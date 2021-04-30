@@ -9,10 +9,18 @@ import UIKit
 import Firebase
 import FirebaseFirestoreSwift
 
-class ViewController: UIViewController {
+//let db = Firestore.firestore()
+//let studentCollection = db.collection("ios_students")
+//public var students = [Student]()
+
+class ViewController: UIViewController, UITableViewDelegate & UITableViewDataSource {
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+      
         // Do any additional setup after loading the view.
 //        let db = Firestore.firestore()
 //        let movieCollection = db.collection("movies")
@@ -43,7 +51,25 @@ class ViewController: UIViewController {
 //        }
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print(students)
+    }
+    
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
 
+        return cell
+    }
 
 }
 

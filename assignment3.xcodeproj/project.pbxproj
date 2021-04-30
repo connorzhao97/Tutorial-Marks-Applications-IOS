@@ -14,10 +14,13 @@
 		0CC638C6263AF6B70045820F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CC638C5263AF6B70045820F /* Assets.xcassets */; };
 		0CC638C9263AF6B70045820F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CC638C7263AF6B70045820F /* LaunchScreen.storyboard */; };
 		0CC638D3263AF9770045820F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CC638D2263AF9770045820F /* GoogleService-Info.plist */; };
-		0CC638D9263B04A80045820F /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC638D8263B04A80045820F /* Movie.swift */; };
 		0CC638DC263B07230045820F /* StudentListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC638DB263B07230045820F /* StudentListTableViewCell.swift */; };
-		0CC638DE263B07F60045820F /* StudentListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC638DD263B07F60045820F /* StudentListTableViewController.swift */; };
+		0CC638DE263B07F60045820F /* StudentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC638DD263B07F60045820F /* StudentListViewController.swift */; };
 		0CC638E0263B11370045820F /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC638DF263B11370045820F /* TabBarViewController.swift */; };
+		0CC638E2263C0D040045820F /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC638E1263C0D040045820F /* Student.swift */; };
+		0CC638E4263C10E10045820F /* AddStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC638E3263C10E10045820F /* AddStudentViewController.swift */; };
+		0CC638E6263C1D580045820F /* Grades.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC638E5263C1D580045820F /* Grades.swift */; };
+		0CC638E8263C47820045820F /* StudentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC638E7263C47820045820F /* StudentDetailViewController.swift */; };
 		EFCBB76A8EBF24201DE88B06 /* Pods_assignment3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2DA381FD40521C5AA75DFB /* Pods_assignment3.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,10 +34,13 @@
 		0CC638C8263AF6B70045820F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0CC638CA263AF6B70045820F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CC638D2263AF9770045820F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		0CC638D8263B04A80045820F /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		0CC638DB263B07230045820F /* StudentListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListTableViewCell.swift; sourceTree = "<group>"; };
-		0CC638DD263B07F60045820F /* StudentListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListTableViewController.swift; sourceTree = "<group>"; };
+		0CC638DD263B07F60045820F /* StudentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListViewController.swift; sourceTree = "<group>"; };
 		0CC638DF263B11370045820F /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		0CC638E1263C0D040045820F /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		0CC638E3263C10E10045820F /* AddStudentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStudentViewController.swift; sourceTree = "<group>"; };
+		0CC638E5263C1D580045820F /* Grades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grades.swift; sourceTree = "<group>"; };
+		0CC638E7263C47820045820F /* StudentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDetailViewController.swift; sourceTree = "<group>"; };
 		0E023F97A294AEFD379BAA8A /* Pods-assignment3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-assignment3.release.xcconfig"; path = "Target Support Files/Pods-assignment3/Pods-assignment3.release.xcconfig"; sourceTree = "<group>"; };
 		AB2DA381FD40521C5AA75DFB /* Pods_assignment3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_assignment3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB45294C56284E8100452089 /* Pods-assignment3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-assignment3.debug.xcconfig"; path = "Target Support Files/Pods-assignment3/Pods-assignment3.debug.xcconfig"; sourceTree = "<group>"; };
@@ -91,7 +97,8 @@
 		0CC638D7263B046A0045820F /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				0CC638D8263B04A80045820F /* Movie.swift */,
+				0CC638E1263C0D040045820F /* Student.swift */,
+				0CC638E5263C1D580045820F /* Grades.swift */,
 			);
 			name = Module;
 			sourceTree = "<group>";
@@ -100,7 +107,9 @@
 			isa = PBXGroup;
 			children = (
 				0CC638DB263B07230045820F /* StudentListTableViewCell.swift */,
-				0CC638DD263B07F60045820F /* StudentListTableViewController.swift */,
+				0CC638DD263B07F60045820F /* StudentListViewController.swift */,
+				0CC638E3263C10E10045820F /* AddStudentViewController.swift */,
+				0CC638E7263C47820045820F /* StudentDetailViewController.swift */,
 			);
 			path = StudentList;
 			sourceTree = "<group>";
@@ -239,11 +248,14 @@
 			files = (
 				0CC638C1263AF6B50045820F /* ViewController.swift in Sources */,
 				0CC638BD263AF6B50045820F /* AppDelegate.swift in Sources */,
+				0CC638E4263C10E10045820F /* AddStudentViewController.swift in Sources */,
 				0CC638DC263B07230045820F /* StudentListTableViewCell.swift in Sources */,
-				0CC638DE263B07F60045820F /* StudentListTableViewController.swift in Sources */,
+				0CC638DE263B07F60045820F /* StudentListViewController.swift in Sources */,
+				0CC638E6263C1D580045820F /* Grades.swift in Sources */,
 				0CC638E0263B11370045820F /* TabBarViewController.swift in Sources */,
-				0CC638D9263B04A80045820F /* Movie.swift in Sources */,
+				0CC638E8263C47820045820F /* StudentDetailViewController.swift in Sources */,
 				0CC638BF263AF6B50045820F /* SceneDelegate.swift in Sources */,
+				0CC638E2263C0D040045820F /* Student.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
