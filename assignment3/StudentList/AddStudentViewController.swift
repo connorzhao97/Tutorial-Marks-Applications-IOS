@@ -22,6 +22,8 @@ class AddStudentViewController: UIViewController {
 
     @IBAction func addNewStudent(_ sender: Any) {
         (sender as! UIBarButtonItem).title = "Adding..."
+        
+        var addable = true
 
         if let studentName = self.studentNameTF.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
             // Check whether studnet name is empty or not

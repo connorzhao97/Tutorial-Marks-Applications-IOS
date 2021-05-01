@@ -61,7 +61,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="81.308411214953267" y="829.37365010799147"/>
+            <point key="canvasLocation" x="-1744" y="829"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="F2i-e8-xnc">
@@ -154,11 +154,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Student List" id="0DU-aJ-6o7">
-                        <barButtonItem key="rightBarButtonItem" title="Add Student" image="person.fill.badge.plus" catalog="system" id="tJV-cC-oNf">
-                            <connections>
-                                <segue destination="dYA-s7-DA0" kind="show" identifier="goToAddStudentSegue" id="DwM-l7-whl"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="Ehj-9k-2wZ"/>
+                        <rightBarButtonItems>
+                            <barButtonItem title="ShareAll" image="square.and.arrow.up" catalog="system" id="jbx-mu-R6g"/>
+                            <barButtonItem title="Add Student" image="person.fill.badge.plus" catalog="system" id="tJV-cC-oNf">
+                                <connections>
+                                    <segue destination="dYA-s7-DA0" kind="show" identifier="goToAddStudentSegue" id="DwM-l7-whl"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="PJT-f8-h0P" id="ogT-Mn-8bt"/>
@@ -180,12 +184,12 @@
                                 <rect key="frame" x="107" y="137" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Student Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kuw-jq-Xa8">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Student Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kuw-jq-Xa8">
                                 <rect key="frame" x="58" y="431" width="312" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="namePhonePad" returnKeyType="done"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Student ID" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4gH-WD-bZD">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Student ID" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4gH-WD-bZD">
                                 <rect key="frame" x="58" y="514" width="312" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
@@ -206,7 +210,9 @@
                         <viewLayoutGuide key="safeArea" id="6Dm-VY-Nrg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="6Dm-VY-Nrg" firstAttribute="trailing" secondItem="kuw-jq-Xa8" secondAttribute="trailing" constant="58" id="9Cs-RX-p4F"/>
                             <constraint firstItem="ue8-ET-Rra" firstAttribute="leading" secondItem="6Dm-VY-Nrg" secondAttribute="leading" constant="58" id="Mz4-bO-VzV"/>
+                            <constraint firstItem="6Dm-VY-Nrg" firstAttribute="trailing" secondItem="4gH-WD-bZD" secondAttribute="trailing" constant="58" id="Ryk-VH-EEN"/>
                             <constraint firstItem="kuw-jq-Xa8" firstAttribute="leading" secondItem="6Dm-VY-Nrg" secondAttribute="leading" constant="58" id="bvQ-NE-Hat"/>
                             <constraint firstItem="4gH-WD-bZD" firstAttribute="leading" secondItem="6Dm-VY-Nrg" secondAttribute="leading" constant="58" id="cMt-BG-uuo"/>
                             <constraint firstItem="kuw-jq-Xa8" firstAttribute="top" secondItem="vEp-iR-f0s" secondAttribute="bottom" constant="8" symbolic="YES" id="hs4-E8-MkD"/>
@@ -257,13 +263,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="namePhonePad" returnKeyType="done"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Student ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RS5-9K-yWv">
-                                <rect key="frame" x="58" y="431" width="312" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Student ID" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RS5-9K-yWv">
+                                <rect key="frame" x="58" y="441" width="312" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Student ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="len-Tj-b6i">
-                                <rect key="frame" x="58" y="409" width="86" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="len-Tj-b6i">
+                                <rect key="frame" x="58" y="412" width="86" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -285,13 +291,31 @@
                             <constraint firstItem="len-Tj-b6i" firstAttribute="top" secondItem="mQQ-Dq-PJS" secondAttribute="bottom" constant="25" id="vGa-0j-Wap"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Student Detail" id="lgP-0D-xWr"/>
+                    <navigationItem key="navigationItem" title="Student Detail" id="lgP-0D-xWr">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="save" id="h9j-QC-5Jc">
+                                <connections>
+                                    <action selector="saveStudent:" destination="GCP-9a-Ygr" id="MIS-dj-iLw"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Share" image="square.and.arrow.up" catalog="system" id="dsu-KD-u6s"/>
+                            <barButtonItem title="Delete" image="trash.fill" catalog="system" id="KDK-wp-cVt">
+                                <color key="tintColor" systemColor="systemRedColor"/>
+                                <connections>
+                                    <action selector="deleteStudent:" destination="GCP-9a-Ygr" id="vhO-rk-p7E"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
                         <outlet property="studentIDTF" destination="RS5-9K-yWv" id="WQV-uW-Xg8"/>
                         <outlet property="studentNameTF" destination="mQQ-Dq-PJS" id="qfw-aL-oM5"/>
+                        <segue destination="0HD-OM-Yu6" kind="unwind" identifier="saveStudentSegue" unwindAction="unwindToStudentListWithSender:" id="zJ6-et-2YS"/>
+                        <segue destination="0HD-OM-Yu6" kind="unwind" identifier="deleteStudentSegue" unwindAction="unwindToStudentListWithSender:" id="uuS-Ch-mtm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tLM-QV-wvf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="0HD-OM-Yu6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3692.5233644859809" y="1109.9352051835854"/>
         </scene>
@@ -339,8 +363,13 @@
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="person.fill.badge.plus" catalog="system" width="128" height="124"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <image name="trash.fill" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
