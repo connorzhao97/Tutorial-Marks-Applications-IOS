@@ -27,10 +27,6 @@ class StudentDetailViewController: UIViewController {
             studentIDTF.text = String(displayStudent.studentID)
         }
 
-
-
-
-
         // Do any additional setup after loading the view.
     }
 
@@ -81,7 +77,6 @@ class StudentDetailViewController: UIViewController {
                         print("Error updating document: \(err)")
                     } else {
                         self.alertLoading!.dismiss(animated: false, completion: {
-
                             let successAlert = UIAlertController(title: nil, message: "Updated the student successfully!", preferredStyle: .alert)
                             successAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
                                 self.performSegue(withIdentifier: "saveStudentSegue", sender: sender)
@@ -96,9 +91,6 @@ class StudentDetailViewController: UIViewController {
 
             //TODO: avatar url, grades
         }
-
-
-
     }
 
 
