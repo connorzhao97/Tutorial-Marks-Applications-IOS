@@ -44,18 +44,13 @@ class StudentDetailViewController: UIViewController {
 
         }
 
-        if studentName.isEmpty {
-            let alert = UIAlertController(title: "Alert", message: "Student name cannot be empty!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            editable = false
-        } else if studentID.isEmpty {
-            let alert = UIAlertController(title: "Alert", message: "Student ID cannot be empty!", preferredStyle: .alert)
+        if studentName.isEmpty || studentID.isEmpty {
+            let alert = UIAlertController(title: "Alert", message: "Student name or ID cannot be empty!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
             editable = false
         }
-
+        
         if editable {
             student!.studentName = studentName
             student!.studentID = Int(studentID) ?? -1

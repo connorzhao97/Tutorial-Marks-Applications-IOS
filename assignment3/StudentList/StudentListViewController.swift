@@ -28,37 +28,10 @@ class StudentListViewController: UIViewController, UITableViewDelegate & UITable
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
 
-
-
-        studentCollection.order(by: "studentID").getDocuments() { (result, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-
-            } else {
-                for document in result!.documents {
-                    let conversionResult = Result {
-                        try document.data(as: Student.self)
-                    }
-
-                    switch conversionResult {
-                    case .success(let convertedDoc):
-                        if var student = convertedDoc {
-                            student.id = document.documentID
-
-                            print("Student: \(student)")
-
-                            students.append(student)
-                        } else {
-                            print("Document does not exist")
-                        }
-                    case .failure(let error):
-                        print("Error decoding movie: \(error)")
-                    }
-                }
-                self.tableView.reloadData()
-            }
-
-        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -111,8 +84,6 @@ class StudentListViewController: UIViewController, UITableViewDelegate & UITable
                 students[studentDetail.studentIndex!] = studentDetail.student!
             }
         }
-
-        tableView.reloadData()
     }
 
     @IBAction func unwindToStudentListWithCancel(sender: UIStoryboardSegue) {

@@ -13,7 +13,7 @@ class AddStudentViewController: UIViewController {
 
     @IBOutlet var studentNameTF: UITextField!
     @IBOutlet var studentIDTF: UITextField!
-    
+
     var alertLoading: UIAlertController?
 
     override func viewDidLoad() {
@@ -21,7 +21,7 @@ class AddStudentViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
+
     // MARK: - Add student
     @IBAction func addNewStudent(_ sender: Any) {
 
@@ -35,24 +35,18 @@ class AddStudentViewController: UIViewController {
             return addable = false
         }
 
-        if studentName.isEmpty {
-            let alert = UIAlertController(title: "Alert", message: "Student name cannot be empty!", preferredStyle: .alert)
+        if studentName.isEmpty || studentID.isEmpty {
+            let alert = UIAlertController(title: "Alert", message: "Student name or ID cannot be empty!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
             addable = false
         }
 
-        if studentID.isEmpty {
-            let alert = UIAlertController(title: "Alert", message: "Student ID cannot be empty!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            addable = false
-        }
 
         if addable {
             // If student name or ID are not empty
-            var student = Student(studentName: studentName, studentID: Int(studentID) ?? -1, avatarUrl: "", grades: Grades())
-            
+            var student = Student(studentName: studentName, studentID: Int(studentID) ?? -1, avatarUrl: "", grades: ["week1": 0.0, "week2":0.0, "week3":0.0, "week4":0.0, "week5":0.0, "week6":0.0, "week7":0.0, "week8":0.0, "week9":0.0, "week10":0.0, "week11":0.0, "week12":0.0])
+
             // https://stackoverflow.com/questions/27960556/loading-an-overlay-when-running-long-tasks-in-ios
             // Creating loading indicator
             self.alertLoading = UIAlertController(title: nil, message: "Adding...", preferredStyle: .alert)
@@ -63,10 +57,10 @@ class AddStudentViewController: UIViewController {
             loadingIndicator.startAnimating()
             self.alertLoading!.view.addSubview(loadingIndicator)
             present(self.alertLoading!, animated: true, completion: nil)
-            
+
 
             do {
-                var ref:DocumentReference?=nil
+                var ref: DocumentReference? = nil
                 try ref = studentCollection.addDocument(from: student) { (err) in
                     if let err = err {
                         print("Error adding document: \(err)")
