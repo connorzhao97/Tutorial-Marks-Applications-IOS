@@ -23,6 +23,7 @@
 		0CC638F3263D4D6F0045820F /* MarkingStudentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC638F2263D4D6F0045820F /* MarkingStudentTableViewCell.swift */; };
 		0CC638F5263FAE9B0045820F /* WeeklySummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC638F4263FAE9B0045820F /* WeeklySummaryTableViewCell.swift */; };
 		0CC638F7263FB2A40045820F /* WeeklySummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC638C0263AF6B50045820F /* WeeklySummaryViewController.swift */; };
+		0CC638FA264186B30045820F /* MarkingScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC638F9264186B30045820F /* MarkingScheme.swift */; };
 		EFCBB76A8EBF24201DE88B06 /* Pods_assignment3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2DA381FD40521C5AA75DFB /* Pods_assignment3.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		0CC638EE263D46F80045820F /* MarkingStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkingStudentViewController.swift; sourceTree = "<group>"; };
 		0CC638F2263D4D6F0045820F /* MarkingStudentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkingStudentTableViewCell.swift; sourceTree = "<group>"; };
 		0CC638F4263FAE9B0045820F /* WeeklySummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklySummaryTableViewCell.swift; sourceTree = "<group>"; };
+		0CC638F9264186B30045820F /* MarkingScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkingScheme.swift; sourceTree = "<group>"; };
 		0E023F97A294AEFD379BAA8A /* Pods-assignment3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-assignment3.release.xcconfig"; path = "Target Support Files/Pods-assignment3/Pods-assignment3.release.xcconfig"; sourceTree = "<group>"; };
 		AB2DA381FD40521C5AA75DFB /* Pods_assignment3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_assignment3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB45294C56284E8100452089 /* Pods-assignment3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-assignment3.debug.xcconfig"; path = "Target Support Files/Pods-assignment3/Pods-assignment3.debug.xcconfig"; sourceTree = "<group>"; };
@@ -83,7 +85,7 @@
 		0CC638BB263AF6B50045820F /* assignment3 */ = {
 			isa = PBXGroup;
 			children = (
-				0CC638D7263B046A0045820F /* Module */,
+				0CC638F82641861D0045820F /* Module */,
 				0CC638F6263FAEAC0045820F /* WeeklySummary */,
 				0CC638EB263D469A0045820F /* Marking */,
 				0CC638DA263B06E30045820F /* StudentList */,
@@ -97,14 +99,6 @@
 				0CC638CA263AF6B70045820F /* Info.plist */,
 			);
 			path = assignment3;
-			sourceTree = "<group>";
-		};
-		0CC638D7263B046A0045820F /* Module */ = {
-			isa = PBXGroup;
-			children = (
-				0CC638E1263C0D040045820F /* Student.swift */,
-			);
-			name = Module;
 			sourceTree = "<group>";
 		};
 		0CC638DA263B06E30045820F /* StudentList */ = {
@@ -134,6 +128,15 @@
 				0CC638F4263FAE9B0045820F /* WeeklySummaryTableViewCell.swift */,
 			);
 			path = WeeklySummary;
+			sourceTree = "<group>";
+		};
+		0CC638F82641861D0045820F /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				0CC638E1263C0D040045820F /* Student.swift */,
+				0CC638F9264186B30045820F /* MarkingScheme.swift */,
+			);
+			path = Module;
 			sourceTree = "<group>";
 		};
 		90B577356B21BC28F49F9291 /* Pods */ = {
@@ -268,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CC638FA264186B30045820F /* MarkingScheme.swift in Sources */,
 				0CC638F3263D4D6F0045820F /* MarkingStudentTableViewCell.swift in Sources */,
 				0CC638BD263AF6B50045820F /* AppDelegate.swift in Sources */,
 				0CC638E4263C10E10045820F /* AddStudentViewController.swift in Sources */,

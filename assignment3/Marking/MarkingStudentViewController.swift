@@ -6,15 +6,27 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestoreSwift
 
-class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate& UIPickerViewDataSource {
     @IBOutlet var tableView: UITableView!
+
+    let screenWidth = UIScreen.main.bounds.width - 10
+    let screenHeight = UIScreen.main.bounds.height / 4
+    var selectedMarkingSchemeIndex = 0
+    var selectedWeekIndex = 0
+    var selectedWeek = ""
+    var selectedMarkingScheme = ""
+    @IBOutlet var selectedWeekLabel: UILabel!
+    @IBOutlet var selectedMarkingSchemeLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        
+
+        // MARK: - Database Operations
         // Get all student data
         studentCollection.order(by: "studentID").getDocuments() { (result, err) in
             if let err = err {
@@ -40,24 +52,187 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
                 }
                 self.tableView.reloadData()
             }
+        }
 
+        // Get marking schemes, if marking schemes do not exist, create one
+        markingSchemeCollection.getDocuments() { (result, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                if let result = result {
+                    if result.count == 0 {
+                        // Add new marking scheme
+                        do {
+                            var ref: DocumentReference? = nil
+                            try ref = markingSchemeCollection.addDocument(from: markingScheme) { (err) in
+                                if let err = err {
+                                    print("Error adding document: \(err)")
+                                } else {
+                                    markingScheme.id = ref!.documentID
+                                }
+                            }
+                        } catch let err {
+                            print(err)
+                        }
+                    } else {
+                        let conversionResult = Result {
+                            try result.documents[0].data(as: MarkingScheme.self)
+                        }
+                        switch conversionResult {
+                        case .success(let convertedDoc):
+                            if let schemes = convertedDoc {
+                                markingScheme = schemes
+                                markingScheme.id = result.documents[0].documentID
+                                self.selectedWeekLabel.text = weeks[0]
+                                self.selectedMarkingSchemeLabel.text = markingScheme.schemes[weeks[0]]
+                            } else {
+                                print("Document does not exist")
+                            }
+                        case .failure(let err):
+                            print("Error decoding movie: \(err)")
+                        }
+                    }
+
+                }
+            }
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
     }
 
+    // MARK: - Picker View functions
+    //https://www.youtube.com/watch?v=9Fy0Gc1l3VE
 
-    /*
-    // MARK: - Navigation
+    @IBAction func popUpPicker(_ sender: Any) {
+        let vc = UIViewController()
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        vc.preferredContentSize = CGSize(width: screenWidth, height: screenHeight)
+
+        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)) //create a new pick view frame
+        pickerView.dataSource = self
+        pickerView.delegate = self
+
+        pickerView.selectRow(self.selectedWeekIndex, inComponent: 0, animated: false)
+
+        var initMarkingScheme = 0
+        if let markingscheme = markingScheme.schemes[weeks[self.selectedWeekIndex]] {
+            switch markingscheme {
+            case "Attendance":
+                initMarkingScheme = 0
+            case "Multiple Checkpoints":
+                initMarkingScheme = 1
+            case "Score out of x":
+                initMarkingScheme = 2
+            case "Grade Level (HD)":
+                initMarkingScheme = 3
+            case "Grade Level (A)":
+                initMarkingScheme = 4
+            default:
+                initMarkingScheme = 0
+            }
+            pickerView.selectRow(initMarkingScheme, inComponent: 1, animated: false)
+        }
+
+        vc.view.addSubview(pickerView)
+
+        pickerView.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
+        pickerView.centerYAnchor.constraint(equalTo: vc.view.centerYAnchor).isActive = true
+
+
+        let alert = UIAlertController(title: "Select Week", message: "", preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.sourceView = pickerView
+        alert.popoverPresentationController?.sourceRect = pickerView.bounds
+
+        alert.setValue(vc, forKey: "contentViewController")
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (UIAlertAction) in }))
+
+        alert.addAction(UIAlertAction(title: "Select", style: .default, handler: { (UIAlertAction) in
+            self.selectedWeekIndex = pickerView.selectedRow(inComponent: 0)
+            self.selectedMarkingSchemeIndex = pickerView.selectedRow(inComponent: 1)
+
+            self.selectedWeek = weeks[self.selectedWeekIndex]
+            self.selectedMarkingScheme = schemes[self.selectedMarkingSchemeIndex]
+            
+            self.selectedWeekLabel.text = self.selectedWeek
+            self.selectedMarkingSchemeLabel.text = self.selectedMarkingScheme
+
+            if self.selectedMarkingScheme != markingScheme.schemes[self.selectedWeek] {
+                markingSchemeCollection.document(markingScheme.id!).updateData(["schemes.\(self.selectedWeek)": "\(self.selectedMarkingScheme)"]) { err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else {
+                        self.selectedMarkingSchemeLabel.text = self.selectedMarkingScheme
+                        markingScheme.schemes[self.selectedWeek] = self.selectedMarkingScheme
+                        print(markingScheme.schemes)
+                        print("Document successfully updated")
+                        //TODO: Set all score to 0
+                    }
+                }
+            }
+        }
+            ))
+
+        self.present(alert, animated: true, completion: nil)
     }
-    */
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        2
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if component == 0 {
+            return weeks.count
+        }
+        return schemes.count
+    }
+
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        60
+    }
+
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 30))
+
+        switch component {
+        case 0:
+            label.text = weeks[row]
+            label.sizeToFit()
+        case 1:
+            label.text = schemes[row]
+            label.sizeToFit()
+        default:
+            label.text = ""
+        }
+
+        return label
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if component == 0{
+            var changedMarkingScheme = 0
+            if let markingscheme = markingScheme.schemes[weeks[row]] {
+                switch markingscheme {
+                case "Attendance":
+                    changedMarkingScheme = 0
+                case "Multiple Checkpoints":
+                    changedMarkingScheme = 1
+                case "Score out of x":
+                    changedMarkingScheme = 2
+                case "Grade Level (HD)":
+                    changedMarkingScheme = 3
+                case "Grade Level (A)":
+                    changedMarkingScheme = 4
+                default:
+                    changedMarkingScheme = 0
+                }
+                pickerView.selectRow(changedMarkingScheme, inComponent: 1, animated: true)
+            }
+        }
+    }
+
+    // MARK: - Table View functions
 
     func numberOfSections(in tableView: UITableView) -> Int {
         1

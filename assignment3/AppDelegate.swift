@@ -11,7 +11,11 @@ import FirebaseFirestoreSwift
 
 let db = Firestore.firestore()
 let studentCollection = db.collection("ios_students")
+let markingSchemeCollection = db.collection("ios_schemes")
+let weeks = ["week1", "week2", "week3", "week4", "week5", "week6", "week7", "week8", "week9", "week10", "week11", "week12"]
+let schemes = ["Attendance", "Multiple Checkpoints", "Score out of x", "Grade Level (HD)", "Grade Level (A)"]
 public var students = [Student]()
+public var markingScheme = MarkingScheme(schemes: ["week1": "Attendance", "week2": "Attendance", "week3": "Attendance", "week4": "Attendance", "week5": "Attendance", "week6": "Attendance", "week7": "Attendance", "week8": "Attendance", "week9": "Attendance", "week10": "Attendance", "week11": "Attendance", "week12": "Attendance"])
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
