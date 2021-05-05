@@ -97,11 +97,11 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Week1">
+                                        <state key="normal" title="week1">
                                             <imageReference key="image" image="arrowtriangle.down.circle.fill" catalog="system" symbolScale="default"/>
                                         </state>
                                         <connections>
-                                            <action selector="btnSelectWeek:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bDz-TM-Q30"/>
+                                            <action selector="selectWeek:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g1l-i7-lWb"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -141,9 +141,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Weekly Summary" id="V5J-Np-fVN"/>
                     <connections>
-                        <outlet property="markingScheme" destination="CO3-y9-aKp" id="8Lz-hL-VJf"/>
-                        <outlet property="summaryGrade" destination="W97-vQ-PzY" id="bh9-WD-Dwx"/>
+                        <outlet property="markingSchemeLabel" destination="CO3-y9-aKp" id="l7y-w6-Ykx"/>
+                        <outlet property="summaryGradeLabel" destination="W97-vQ-PzY" id="bh9-WD-Dwx"/>
                         <outlet property="tableView" destination="x9m-jY-Xy1" id="Ozw-tQ-0Ck"/>
+                        <outlet property="weekLabel" destination="bMd-u9-tAB" id="LCO-DG-Rsy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -516,7 +517,7 @@
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7WN-Tz-qDN">
+                                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7WN-Tz-qDN">
                                                                     <rect key="frame" x="241.33333333333337" y="15" width="51" height="31"/>
                                                                     <connections>
                                                                         <action selector="attendanceValueChanged:" destination="Wkr-qu-grP" eventType="valueChanged" id="KG4-W2-Ejq"/>

@@ -9,17 +9,17 @@ import UIKit
 import Firebase
 import FirebaseFirestoreSwift
 
-class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate& UIPickerViewDataSource {
+class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate & UIPickerViewDataSource {
     @IBOutlet var tableView: UITableView!
-
-    let screenWidth = UIScreen.main.bounds.width - 10
-    let screenHeight = UIScreen.main.bounds.height / 4
-    var selectedMarkingSchemeIndex = 0
-    var selectedWeekIndex = 0
-    var selectedWeek = ""
-    var selectedMarkingScheme = ""
     @IBOutlet var selectedWeekLabel: UILabel!
     @IBOutlet var selectedMarkingSchemeLabel: UILabel!
+    
+    let screenWidth = UIScreen.main.bounds.width - 10
+    let screenHeight = UIScreen.main.bounds.height / 4
+    var selectedMarkingSchemeIndex:Int = 0
+    var selectedWeekIndex:Int = 0
+    var selectedWeek:String = "week1"
+    var selectedMarkingScheme:String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -155,12 +155,16 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
 
             self.selectedWeek = weeks[self.selectedWeekIndex]
             self.selectedMarkingScheme = schemes[self.selectedMarkingSchemeIndex]
-            
+
             self.selectedWeekLabel.text = self.selectedWeek
             self.selectedMarkingSchemeLabel.text = self.selectedMarkingScheme
+            
+            // Reload data after selecting weeks or marking schemes
+            self.tableView.reloadData()
 
+            // Change marking scheme
             if self.selectedMarkingScheme != markingScheme.schemes[self.selectedWeek] {
-                markingSchemeCollection.document(markingScheme.id!).updateData(["schemes.\(self.selectedWeek)": "\(self.selectedMarkingScheme)"]) { err in
+                markingSchemeCollection.document(markingScheme.id!).updateData(["schemes.\(self.selectedWeek)": self.selectedMarkingScheme]) { err in
                     if let err = err {
                         print("Error updating document: \(err)")
                     } else {
@@ -172,8 +176,7 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
                     }
                 }
             }
-        }
-            ))
+        }))
 
         self.present(alert, animated: true, completion: nil)
     }
@@ -209,8 +212,10 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
 
         return label
     }
+    // Detect week change, and change the related marking scheme
+    // https://stackoverflow.com/questions/2565805/how-to-detect-changes-on-uipickerview
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if component == 0{
+        if component == 0 {
             var changedMarkingScheme = 0
             if let markingscheme = markingScheme.schemes[weeks[row]] {
                 switch markingscheme {
@@ -253,19 +258,20 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
             studentCell.studentNameLabel.text = student.studentName
             studentCell.studentIDLabel.text = String(student.studentID)
 
-            let selectedWeek = "week1"
-
-            studentCell.grade = student.grades["week1"] ?? 0
+            studentCell.grade = student.grades[self.selectedWeek] ?? 0.0
             studentCell.studentIndex = indexPath.row
 
-            studentCell.selectedWeek = selectedWeek
-            studentCell.selectedScheme = "Attendance"
-
-
-            if studentCell.grade == 0.0 {
-                studentCell.attendanceCheck.isOn = false
-            } else if studentCell.grade == 100.0 {
-                studentCell.attendanceCheck.isOn = true
+            studentCell.selectedWeek = self.selectedWeek
+            studentCell.selectedScheme = markingScheme.schemes[self.selectedWeek]
+            
+            switch studentCell.selectedScheme {
+            case "Attendance":
+                if studentCell.grade == 0.0 {
+                    studentCell.attendanceCheck.isOn = false
+                } else if studentCell.grade == 100.0 {
+                    studentCell.attendanceCheck.isOn = true
+                }
+            default: break
             }
         }
 

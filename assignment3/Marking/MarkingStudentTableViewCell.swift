@@ -13,7 +13,6 @@ class MarkingStudentTableViewCell: UITableViewCell {
     @IBOutlet var studentIDLabel: UILabel!
     @IBOutlet var attendanceCheck: UISwitch!
 
-
     var grade: Double! = 0.0
     var selectedWeek: String!
     var selectedScheme: String!
