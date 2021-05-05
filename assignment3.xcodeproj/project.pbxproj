@@ -24,6 +24,7 @@
 		0CC638F5263FAE9B0045820F /* WeeklySummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC638F4263FAE9B0045820F /* WeeklySummaryTableViewCell.swift */; };
 		0CC638F7263FB2A40045820F /* WeeklySummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC638C0263AF6B50045820F /* WeeklySummaryViewController.swift */; };
 		0CC638FA264186B30045820F /* MarkingScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC638F9264186B30045820F /* MarkingScheme.swift */; };
+		0CC638FC2642D9C20045820F /* StudentDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC638FB2642D9C20045820F /* StudentDetailTableViewCell.swift */; };
 		EFCBB76A8EBF24201DE88B06 /* Pods_assignment3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2DA381FD40521C5AA75DFB /* Pods_assignment3.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		0CC638F2263D4D6F0045820F /* MarkingStudentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkingStudentTableViewCell.swift; sourceTree = "<group>"; };
 		0CC638F4263FAE9B0045820F /* WeeklySummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklySummaryTableViewCell.swift; sourceTree = "<group>"; };
 		0CC638F9264186B30045820F /* MarkingScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkingScheme.swift; sourceTree = "<group>"; };
+		0CC638FB2642D9C20045820F /* StudentDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDetailTableViewCell.swift; sourceTree = "<group>"; };
 		0E023F97A294AEFD379BAA8A /* Pods-assignment3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-assignment3.release.xcconfig"; path = "Target Support Files/Pods-assignment3/Pods-assignment3.release.xcconfig"; sourceTree = "<group>"; };
 		AB2DA381FD40521C5AA75DFB /* Pods_assignment3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_assignment3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB45294C56284E8100452089 /* Pods-assignment3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-assignment3.debug.xcconfig"; path = "Target Support Files/Pods-assignment3/Pods-assignment3.debug.xcconfig"; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				0CC638DB263B07230045820F /* StudentListTableViewCell.swift */,
+				0CC638FB2642D9C20045820F /* StudentDetailTableViewCell.swift */,
 				0CC638DD263B07F60045820F /* StudentListViewController.swift */,
 				0CC638E3263C10E10045820F /* AddStudentViewController.swift */,
 				0CC638E7263C47820045820F /* StudentDetailViewController.swift */,
@@ -283,6 +286,7 @@
 				0CC638BF263AF6B50045820F /* SceneDelegate.swift in Sources */,
 				0CC638E2263C0D040045820F /* Student.swift in Sources */,
 				0CC638F7263FB2A40045820F /* WeeklySummaryViewController.swift in Sources */,
+				0CC638FC2642D9C20045820F /* StudentDetailTableViewCell.swift in Sources */,
 				0CC638F5263FAE9B0045820F /* WeeklySummaryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

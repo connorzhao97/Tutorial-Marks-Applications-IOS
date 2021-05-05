@@ -321,6 +321,7 @@
                         <outlet property="studentIDTF" destination="4gH-WD-bZD" id="OyP-KK-sxw"/>
                         <outlet property="studentNameTF" destination="kuw-jq-Xa8" id="fKw-3o-OpP"/>
                         <segue destination="Gtt-ar-0kp" kind="unwind" identifier="addStudentSegue" unwindAction="unwindToStudentListWithSender:" id="FKQ-Y5-6B2"/>
+                        <segue destination="Gtt-ar-0kp" kind="unwind" identifier="dismissSegue" unwindAction="unwindToStudentListWithCancelWithSender:" id="Kon-jK-3Nl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rbk-oC-Hec" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -362,21 +363,81 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XBM-pK-yTl">
+                                <rect key="frame" x="0.0" y="542" width="428" height="301"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StudentDetailTableViewCell" rowHeight="50" id="BI1-oJ-hJf" customClass="StudentDetailTableViewCell" customModule="assignment3" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.333333969116211" width="428" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BI1-oJ-hJf" id="XQk-9P-dIB">
+                                            <rect key="frame" x="0.0" y="0.0" width="428" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MCn-DI-Xko">
+                                                    <rect key="frame" x="58" y="15" width="44.333333333333343" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EoC-Bh-Vgg">
+                                                    <rect key="frame" x="226" y="15" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" systemColor="systemRedColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="MCn-DI-Xko" firstAttribute="top" secondItem="XQk-9P-dIB" secondAttribute="topMargin" constant="4" id="8xt-sW-F9U"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="EoC-Bh-Vgg" secondAttribute="bottom" constant="3" id="Kl8-7B-heP"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="MCn-DI-Xko" secondAttribute="bottom" constant="3" id="a0W-8W-E9l"/>
+                                                <constraint firstItem="EoC-Bh-Vgg" firstAttribute="top" secondItem="XQk-9P-dIB" secondAttribute="topMargin" constant="4" id="d01-bB-XR7"/>
+                                                <constraint firstItem="MCn-DI-Xko" firstAttribute="leading" secondItem="XQk-9P-dIB" secondAttribute="leadingMargin" constant="38" id="gkA-zj-gkn"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="EoC-Bh-Vgg" secondAttribute="trailing" constant="140" id="x42-10-bPp"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="detailGradeLabel" destination="EoC-Bh-Vgg" id="NW8-VQ-YFx"/>
+                                            <outlet property="detailWeekLabel" destination="MCn-DI-Xko" id="lUj-Zw-3hS"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Summary Grade:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIg-bR-41t">
+                                <rect key="frame" x="58" y="503" width="128" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mGi-4g-rS7">
+                                <rect key="frame" x="205" y="503" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="AsC-co-1SC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="XBM-pK-yTl" secondAttribute="trailing" id="2U2-Kg-PVx"/>
                             <constraint firstItem="mQQ-Dq-PJS" firstAttribute="trailing" secondItem="RS5-9K-yWv" secondAttribute="trailing" id="3iV-rj-AbP"/>
                             <constraint firstItem="RS5-9K-yWv" firstAttribute="top" secondItem="len-Tj-b6i" secondAttribute="bottom" constant="8" symbolic="YES" id="ASB-Rq-EFj"/>
                             <constraint firstItem="mQQ-Dq-PJS" firstAttribute="leading" secondItem="Oy9-Um-Cvp" secondAttribute="leading" id="DOL-GO-HmZ"/>
+                            <constraint firstItem="XBM-pK-yTl" firstAttribute="leading" secondItem="AsC-co-1SC" secondAttribute="leading" id="DvR-fL-cyo"/>
+                            <constraint firstItem="EIg-bR-41t" firstAttribute="leading" secondItem="AsC-co-1SC" secondAttribute="leading" constant="58" id="Kfv-pO-a87"/>
                             <constraint firstItem="RS5-9K-yWv" firstAttribute="leading" secondItem="Oy9-Um-Cvp" secondAttribute="leading" id="OsL-MD-zUF"/>
+                            <constraint firstItem="mGi-4g-rS7" firstAttribute="leading" secondItem="EIg-bR-41t" secondAttribute="trailing" constant="19" id="RpT-7x-9Du"/>
+                            <constraint firstItem="EIg-bR-41t" firstAttribute="top" secondItem="RS5-9K-yWv" secondAttribute="bottom" constant="28" id="bSD-gM-2gr"/>
                             <constraint firstItem="Oy9-Um-Cvp" firstAttribute="leading" secondItem="AsC-co-1SC" secondAttribute="leading" constant="58" id="cEU-8O-YgG"/>
+                            <constraint firstItem="XBM-pK-yTl" firstAttribute="top" secondItem="EIg-bR-41t" secondAttribute="bottom" constant="18" id="ePJ-aN-LzO"/>
                             <constraint firstItem="len-Tj-b6i" firstAttribute="leading" secondItem="Oy9-Um-Cvp" secondAttribute="leading" id="gKO-3q-iML"/>
                             <constraint firstItem="Oy9-Um-Cvp" firstAttribute="top" secondItem="u95-PB-WZ9" secondAttribute="bottom" constant="20" id="kQd-bb-g1p"/>
                             <constraint firstItem="mQQ-Dq-PJS" firstAttribute="top" secondItem="Oy9-Um-Cvp" secondAttribute="bottom" constant="1.6666666666666856" id="pBh-GF-Xpi"/>
+                            <constraint firstItem="XBM-pK-yTl" firstAttribute="bottom" secondItem="AsC-co-1SC" secondAttribute="bottom" id="pEg-Xn-rGU"/>
                             <constraint firstItem="mQQ-Dq-PJS" firstAttribute="centerX" secondItem="u95-PB-WZ9" secondAttribute="centerX" id="sz3-95-c3d"/>
                             <constraint firstItem="len-Tj-b6i" firstAttribute="leading" secondItem="AsC-co-1SC" secondAttribute="leading" constant="58" id="tFg-YI-qhZ"/>
                             <constraint firstItem="len-Tj-b6i" firstAttribute="top" secondItem="mQQ-Dq-PJS" secondAttribute="bottom" constant="25" id="vGa-0j-Wap"/>
+                            <constraint firstItem="mGi-4g-rS7" firstAttribute="top" secondItem="RS5-9K-yWv" secondAttribute="bottom" constant="28" id="z7d-5p-Ec8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Student Detail" id="lgP-0D-xWr">
@@ -398,8 +459,11 @@
                     <connections>
                         <outlet property="studentIDTF" destination="RS5-9K-yWv" id="WQV-uW-Xg8"/>
                         <outlet property="studentNameTF" destination="mQQ-Dq-PJS" id="qfw-aL-oM5"/>
+                        <outlet property="summaryGradeLabel" destination="mGi-4g-rS7" id="zHs-14-uxz"/>
+                        <outlet property="tableView" destination="XBM-pK-yTl" id="oRa-L0-gLZ"/>
                         <segue destination="0HD-OM-Yu6" kind="unwind" identifier="saveStudentSegue" unwindAction="unwindToStudentListWithSender:" id="zJ6-et-2YS"/>
                         <segue destination="0HD-OM-Yu6" kind="unwind" identifier="deleteStudentSegue" unwindAction="unwindToStudentListWithSender:" id="uuS-Ch-mtm"/>
+                        <segue destination="0HD-OM-Yu6" kind="unwind" identifier="dismissSegue" unwindAction="unwindToStudentListWithCancelWithSender:" id="RJE-1h-Uc1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tLM-QV-wvf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

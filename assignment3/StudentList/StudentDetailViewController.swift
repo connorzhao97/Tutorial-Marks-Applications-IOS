@@ -7,28 +7,35 @@
 
 import UIKit
 
-class StudentDetailViewController: UIViewController {
+class StudentDetailViewController: UIViewController, UITableViewDelegate & UITableViewDataSource {
 
     @IBOutlet var studentNameTF: UITextField!
     @IBOutlet var studentIDTF: UITextField!
+    @IBOutlet var summaryGradeLabel: UILabel!
+    @IBOutlet var tableView: UITableView!
 
     var student: Student?
     var studentIndex: Int?
-
     var alertLoading: UIAlertController?
 
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.delegate = self
+        tableView.dataSource = self
         if let displayStudent = student {
             studentNameTF.text = displayStudent.studentName
             studentIDTF.text = String(displayStudent.studentID)
-        }
 
-        // Do any additional setup after loading the view.
+            var summaryGrade = 0.0
+            for week in weeks {
+                summaryGrade += displayStudent.grades[week] ?? 0.0
+            }
+            summaryGradeLabel.text =  String(format: "%.2f", summaryGrade) + "/1200 (" + String(format: "%.2f", summaryGrade / 12.0) + "%)"
+        }
     }
+
 
     // Update student detail
     @IBAction func saveStudent(_ sender: Any) {
@@ -50,7 +57,7 @@ class StudentDetailViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
             editable = false
         }
-        
+
         if editable {
             student!.studentName = studentName
             student!.studentID = Int(studentID) ?? -1
@@ -113,6 +120,33 @@ class StudentDetailViewController: UIViewController {
         }))
 
         self.present(deleteAlert, animated: true, completion: nil)
+    }
+
+    // MARK: - Table View functions
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 12
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "StudentDetailTableViewCell", for: indexPath)
+
+        if let gradeCell = cell as? StudentDetailTableViewCell {
+            gradeCell.detailWeekLabel.text = weeks[indexPath.row]
+            gradeCell.detailGradeLabel.text = String(self.student?.grades[weeks[indexPath.row]] ?? 0.0)
+        }
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.performSegue(withIdentifier: "dismissSegue", sender: self)
     }
 
 }

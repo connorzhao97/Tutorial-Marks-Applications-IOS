@@ -82,4 +82,8 @@ class AddStudentViewController: UIViewController {
         }
     }
 
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.performSegue(withIdentifier: "dismissSegue", sender: self)
+    }
 }
