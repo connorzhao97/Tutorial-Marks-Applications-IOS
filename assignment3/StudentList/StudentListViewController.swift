@@ -29,10 +29,42 @@ class StudentListViewController: UIViewController, UITableViewDelegate & UITable
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
 
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
     }
+
+    @IBAction func shareAllGrades(_ sender: Any) {
+        var content = ""
+        for student in students {
+            var summaryGrade = 0.0
+            for week in weeks {
+                summaryGrade += student.grades[week] ?? 0.0
+            }
+            content += """
+                    Student Name: \(student.studentName),
+                    Student ID: \(student.studentID),
+                    Week1: \(student.grades["week1"] ?? 0.0),
+                    Week2: \(student.grades["week2"] ?? 0.0),
+                    Week3: \(student.grades["week3"] ?? 0.0),
+                    Week4: \(student.grades["week4"] ?? 0.0),
+                    Week5: \(student.grades["week5"] ?? 0.0),
+                    Week6: \(student.grades["week6"] ?? 0.0),
+                    Week7: \(student.grades["week7"] ?? 0.0),
+                    Week8: \(student.grades["week8"] ?? 0.0),
+                    Week9: \(student.grades["week9"] ?? 0.0),
+                    Week10: \(student.grades["week10"] ?? 0.0),
+                    Week11: \(student.grades["week11"] ?? 0.0),
+                    Week12: \(student.grades["week11"] ?? 0.0),
+                    Summary Grade: \(String(format: "%.2f", summaryGrade))/1200 (\(String(format: "%.2f", summaryGrade / 12.0)) %).\n
+                    """
+        }
+        let shareViewController = UIActivityViewController(activityItems: [content], applicationActivities: [])
+        present(shareViewController, animated: true, completion: nil)
+    }
+
+
+
 
     // MARK: - Table view data source
 

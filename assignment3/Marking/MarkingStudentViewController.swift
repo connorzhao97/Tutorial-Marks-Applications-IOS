@@ -266,10 +266,37 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
             
             switch studentCell.selectedScheme {
             case "Attendance":
+                studentCell.attendanceView.isHidden=false
+                studentCell.gradeHDView.isHidden=true
                 if studentCell.grade == 0.0 {
                     studentCell.attendanceCheck.isOn = false
                 } else if studentCell.grade == 100.0 {
                     studentCell.attendanceCheck.isOn = true
+                }
+            case "Grade Level (HD)":
+                studentCell.attendanceView.isHidden=true
+                studentCell.gradeHDView.isHidden=false
+                switch studentCell.grade {
+                case 100:
+                    studentCell.HDGradeIndex=0
+                    studentCell.btnHDGradeLevel.setTitle("HD+", for: .normal)
+                case 80:
+                    studentCell.HDGradeIndex=1
+                    studentCell.btnHDGradeLevel.setTitle("HD", for: .normal)
+                case 70:
+                    studentCell.HDGradeIndex=2
+                    studentCell.btnHDGradeLevel.setTitle("DN", for: .normal)
+                case 60:
+                    studentCell.HDGradeIndex=3
+                    studentCell.btnHDGradeLevel.setTitle("CR", for: .normal)
+                case 50:
+                    studentCell.HDGradeIndex=4
+                    studentCell.btnHDGradeLevel.setTitle("PP", for: .normal)
+                case 0:
+                    studentCell.HDGradeIndex=5
+                    studentCell.btnHDGradeLevel.setTitle("NN", for: .normal)
+                default:
+                    break
                 }
             default: break
             }

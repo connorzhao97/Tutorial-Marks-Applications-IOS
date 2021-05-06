@@ -13,7 +13,7 @@ class WeeklySummaryViewController: UIViewController, UITableViewDelegate, UITabl
 
     @IBOutlet var markingSchemeLabel: UILabel!
     @IBOutlet var summaryGradeLabel: UILabel!
-    @IBOutlet var weekLabel: UIButton!
+    @IBOutlet var btnWeek: UIButton!
     @IBOutlet var tableView: UITableView!
 
     let screenWidth = UIScreen.main.bounds.width - 10
@@ -28,6 +28,7 @@ class WeeklySummaryViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -61,7 +62,7 @@ class WeeklySummaryViewController: UIViewController, UITableViewDelegate, UITabl
         alert.addAction(UIAlertAction(title: "Select", style: .default, handler: { (UIAlertAction) in
             self.selectedWeekIndex = pickerView.selectedRow(inComponent: 0)
             self.selectedWeek = weeks[self.selectedWeekIndex]
-            self.weekLabel.setTitle(self.selectedWeek, for: .normal)
+            self.btnWeek.setTitle(self.selectedWeek, for: .normal)
             self.markingSchemeLabel.text = markingScheme.schemes[self.selectedWeek]
             self.calculateSummaryGrade()
         }))

@@ -32,7 +32,7 @@ class StudentDetailViewController: UIViewController, UITableViewDelegate & UITab
             for week in weeks {
                 summaryGrade += displayStudent.grades[week] ?? 0.0
             }
-            summaryGradeLabel.text =  String(format: "%.2f", summaryGrade) + "/1200 (" + String(format: "%.2f", summaryGrade / 12.0) + "%)"
+            summaryGradeLabel.text = String(format: "%.2f", summaryGrade) + "/1200 (" + String(format: "%.2f", summaryGrade / 12.0) + "%)"
         }
     }
 
@@ -65,7 +65,6 @@ class StudentDetailViewController: UIViewController, UITableViewDelegate & UITab
             // https://stackoverflow.com/questions/27960556/loading-an-overlay-when-running-long-tasks-in-ios
             // Creating loading indicator
             self.alertLoading = UIAlertController(title: nil, message: "Updating...", preferredStyle: .alert)
-
             let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
             loadingIndicator.hidesWhenStopped = true
             loadingIndicator.style = UIActivityIndicatorView.Style.medium
@@ -122,6 +121,35 @@ class StudentDetailViewController: UIViewController, UITableViewDelegate & UITab
         self.present(deleteAlert, animated: true, completion: nil)
     }
 
+    @IBAction func shareGrades(_ sender: Any) {
+        if let student = student {
+            var summaryGrade = 0.0
+            for week in weeks {
+                summaryGrade += student.grades[week] ?? 0.0
+            }
+            let content = """
+                Student Name: \(student.studentName),
+                Student ID: \(student.studentID),
+                Week1: \(student.grades["week1"] ?? 0.0),
+                Week2: \(student.grades["week2"] ?? 0.0),
+                Week3: \(student.grades["week3"] ?? 0.0),
+                Week4: \(student.grades["week4"] ?? 0.0),
+                Week5: \(student.grades["week5"] ?? 0.0),
+                Week6: \(student.grades["week6"] ?? 0.0),
+                Week7: \(student.grades["week7"] ?? 0.0),
+                Week8: \(student.grades["week8"] ?? 0.0),
+                Week9: \(student.grades["week9"] ?? 0.0),
+                Week10: \(student.grades["week10"] ?? 0.0),
+                Week11: \(student.grades["week11"] ?? 0.0),
+                Week12: \(student.grades["week11"] ?? 0.0),
+                Summary Grade: \(String(format: "%.2f", summaryGrade))/1200 (\(String(format: "%.2f", summaryGrade / 12.0)) %).
+                """
+            let shareViewController = UIActivityViewController(activityItems: [content], applicationActivities: [])
+            present(shareViewController, animated: true, completion: nil)
+        }
+    }
+
+
     // MARK: - Table View functions
     func numberOfSections(in tableView: UITableView) -> Int {
         1
@@ -144,7 +172,7 @@ class StudentDetailViewController: UIViewController, UITableViewDelegate & UITab
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         self.performSegue(withIdentifier: "dismissSegue", sender: self)
     }
