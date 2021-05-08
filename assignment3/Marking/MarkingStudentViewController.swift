@@ -13,13 +13,13 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet var tableView: UITableView!
     @IBOutlet var selectedWeekLabel: UILabel!
     @IBOutlet var selectedMarkingSchemeLabel: UILabel!
-    
+
     let screenWidth = UIScreen.main.bounds.width - 10
     let screenHeight = UIScreen.main.bounds.height / 4
-    var selectedMarkingSchemeIndex:Int = 0
-    var selectedWeekIndex:Int = 0
-    var selectedWeek:String = "week1"
-    var selectedMarkingScheme:String = ""
+    var selectedMarkingSchemeIndex: Int = 0
+    var selectedWeekIndex: Int = 0
+    var selectedWeek: String = "week1"
+    var selectedMarkingScheme: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,7 +158,7 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
 
             self.selectedWeekLabel.text = self.selectedWeek
             self.selectedMarkingSchemeLabel.text = self.selectedMarkingScheme
-            
+
             // Reload data after selecting weeks or marking schemes
             self.tableView.reloadData()
 
@@ -263,40 +263,65 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
 
             studentCell.selectedWeek = self.selectedWeek
             studentCell.selectedScheme = markingScheme.schemes[self.selectedWeek]
-            
+
             switch studentCell.selectedScheme {
             case "Attendance":
-                studentCell.attendanceView.isHidden=false
-                studentCell.gradeHDView.isHidden=true
+                studentCell.attendanceView.isHidden = false
+                studentCell.gradeHDView.isHidden = true
+                studentCell.gradeAView.isHidden = true
                 if studentCell.grade == 0.0 {
                     studentCell.attendanceCheck.isOn = false
                 } else if studentCell.grade == 100.0 {
                     studentCell.attendanceCheck.isOn = true
                 }
             case "Grade Level (HD)":
-                studentCell.attendanceView.isHidden=true
-                studentCell.gradeHDView.isHidden=false
+                studentCell.attendanceView.isHidden = true
+                studentCell.gradeHDView.isHidden = false
+                studentCell.gradeAView.isHidden = true
                 switch studentCell.grade {
                 case 100:
-                    studentCell.HDGradeIndex=0
+                    studentCell.HDGradeIndex = 0
                     studentCell.btnHDGradeLevel.setTitle("HD+", for: .normal)
                 case 80:
-                    studentCell.HDGradeIndex=1
+                    studentCell.HDGradeIndex = 1
                     studentCell.btnHDGradeLevel.setTitle("HD", for: .normal)
                 case 70:
-                    studentCell.HDGradeIndex=2
+                    studentCell.HDGradeIndex = 2
                     studentCell.btnHDGradeLevel.setTitle("DN", for: .normal)
                 case 60:
-                    studentCell.HDGradeIndex=3
+                    studentCell.HDGradeIndex = 3
                     studentCell.btnHDGradeLevel.setTitle("CR", for: .normal)
                 case 50:
-                    studentCell.HDGradeIndex=4
+                    studentCell.HDGradeIndex = 4
                     studentCell.btnHDGradeLevel.setTitle("PP", for: .normal)
                 case 0:
-                    studentCell.HDGradeIndex=5
+                    studentCell.HDGradeIndex = 5
                     studentCell.btnHDGradeLevel.setTitle("NN", for: .normal)
                 default:
                     break
+                }
+            case "Grade Level (A)":
+                studentCell.attendanceView.isHidden = true
+                studentCell.gradeHDView.isHidden = true
+                studentCell.gradeAView.isHidden = false
+                switch studentCell.grade {
+                case 100:
+                    studentCell.AGradeIndex = 0
+                    studentCell.btnAGradeLevel.setTitle("A", for: .normal)
+                case 80:
+                    studentCell.AGradeIndex = 1
+                    studentCell.btnAGradeLevel.setTitle("B", for: .normal)
+                case 70:
+                    studentCell.AGradeIndex = 2
+                    studentCell.btnAGradeLevel.setTitle("C", for: .normal)
+                case 60:
+                    studentCell.AGradeIndex = 3
+                    studentCell.btnAGradeLevel.setTitle("D", for: .normal)
+                case 0:
+                    studentCell.AGradeIndex = 4
+                    studentCell.btnAGradeLevel.setTitle("F", for: .normal)
+                default:
+                    break;
                 }
             default: break
             }

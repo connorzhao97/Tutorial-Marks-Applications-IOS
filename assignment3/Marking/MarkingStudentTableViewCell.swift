@@ -11,7 +11,8 @@ class MarkingStudentTableViewCell: UITableViewCell, UIPickerViewDelegate & UIPic
     // Views
     @IBOutlet var attendanceView: UIView!
     @IBOutlet var gradeHDView: UIView!
-
+    @IBOutlet var gradeAView: UIView!
+    
     // Labels
     @IBOutlet var studentNameLabel: UILabel!
     @IBOutlet var studentIDLabel: UILabel!
@@ -19,6 +20,7 @@ class MarkingStudentTableViewCell: UITableViewCell, UIPickerViewDelegate & UIPic
     // Marking Scheme
     @IBOutlet var attendanceCheck: UISwitch!
     @IBOutlet var btnHDGradeLevel: UIButton!
+    @IBOutlet var btnAGradeLevel: UIButton!
     
 
     let screenWidth = UIScreen.main.bounds.width - 10
@@ -28,6 +30,7 @@ class MarkingStudentTableViewCell: UITableViewCell, UIPickerViewDelegate & UIPic
     var selectedScheme: String!
     var studentIndex: Int?
     var HDGradeIndex = 0
+    var AGradeIndex = 0
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -55,6 +58,7 @@ class MarkingStudentTableViewCell: UITableViewCell, UIPickerViewDelegate & UIPic
         vc.preferredContentSize = CGSize(width: screenWidth, height: screenHeight)
 
         let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)) //create a new pick view frame
+        // Determine which picker to show
         pickerView.tag = 0
         pickerView.dataSource = self
         pickerView.delegate = self
@@ -95,6 +99,53 @@ class MarkingStudentTableViewCell: UITableViewCell, UIPickerViewDelegate & UIPic
         self.window?.rootViewController?.present(alert, animated: true, completion: nil)
 
     }
+    
+    @IBAction func gradeAValueChanged(_ sender: Any) {
+        let vc = UIViewController()
+
+        vc.preferredContentSize = CGSize(width: screenWidth, height: screenHeight)
+
+        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)) //create a new pick view frame
+        // Determine which picker to show
+        pickerView.tag = 1
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        
+        pickerView.selectRow(self.AGradeIndex, inComponent: 0, animated: false) // grade
+        vc.view.addSubview(pickerView)
+        pickerView.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
+        pickerView.centerYAnchor.constraint(equalTo: vc.view.centerYAnchor).isActive = true
+        let alert = UIAlertController(title: "Select Grade", message: "", preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.sourceView = pickerView
+        alert.popoverPresentationController?.sourceRect = pickerView.bounds
+
+        alert.setValue(vc, forKey: "contentViewController")
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (UIAlertAction) in }))
+        alert.addAction(UIAlertAction(title: "Select", style: .default, handler: { (UIAlertAction) in
+            self.AGradeIndex = pickerView.selectedRow(inComponent: 0)
+            let selectedHDGrade = AGrades[self.AGradeIndex]
+            var grade = 0.0
+            switch selectedHDGrade {
+            case "A":
+                grade = 100.0
+            case "B":
+                grade = 80.0
+            case "C":
+                grade = 70.0
+            case "D":
+                grade = 60.0
+            case "F":
+                grade = 0.0
+            default: break
+            }
+            self.updateGrade(grade, markingScheme: "AGradeLevel")
+        }))
+        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1
     }
@@ -141,6 +192,8 @@ class MarkingStudentTableViewCell: UITableViewCell, UIPickerViewDelegate & UIPic
                     switch markingScheme {
                     case "HDGradeLevel":
                         self.btnHDGradeLevel.setTitle(HDGrades[self.HDGradeIndex], for: .normal)
+                    case "AGradeLevel":
+                        self.btnAGradeLevel.setTitle(AGrades[self.AGradeIndex], for: .normal)
                     default:
                         break
                     }

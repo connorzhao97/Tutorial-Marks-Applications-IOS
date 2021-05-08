@@ -605,7 +605,7 @@
                                                                 <constraint firstAttribute="height" constant="60" id="eRg-3g-Wbf"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lVU-5s-XlK">
+                                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lVU-5s-XlK">
                                                             <rect key="frame" x="0.0" y="90" width="408" height="60"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6E-r0-RGK">
@@ -633,12 +633,44 @@
                                                                 <constraint firstAttribute="height" constant="60" id="kyB-Ld-xbQ"/>
                                                             </constraints>
                                                         </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KTn-t3-Iif">
+                                                            <rect key="frame" x="0.0" y="90" width="408" height="60"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ev4-lg-2jP">
+                                                                    <rect key="frame" x="100" y="14" width="208" height="32"/>
+                                                                    <color key="backgroundColor" name="AccentColor"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                    <state key="normal" title="A">
+                                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </state>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                            <integer key="value" value="10"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                    <connections>
+                                                                        <action selector="gradeAValueChanged:" destination="Wkr-qu-grP" eventType="touchUpInside" id="Slg-xH-oGi"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="ev4-lg-2jP" secondAttribute="trailing" constant="100" id="LGT-Gc-4TC"/>
+                                                                <constraint firstItem="ev4-lg-2jP" firstAttribute="top" secondItem="KTn-t3-Iif" secondAttribute="top" constant="14" id="dFF-pz-yvs"/>
+                                                                <constraint firstAttribute="bottom" secondItem="ev4-lg-2jP" secondAttribute="bottom" constant="14" id="lT1-Sz-AC7"/>
+                                                                <constraint firstItem="ev4-lg-2jP" firstAttribute="leading" secondItem="KTn-t3-Iif" secondAttribute="leading" constant="100" id="zgu-Sw-rXL"/>
+                                                            </constraints>
+                                                        </view>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="KTn-t3-Iif" secondAttribute="trailing" id="Izx-za-3xe"/>
+                                                        <constraint firstItem="KTn-t3-Iif" firstAttribute="leading" secondItem="TFl-w6-WmZ" secondAttribute="leading" id="Vai-oC-xl9"/>
                                                         <constraint firstAttribute="bottom" secondItem="lVU-5s-XlK" secondAttribute="bottom" id="Wkc-Bd-9WH"/>
+                                                        <constraint firstAttribute="bottom" secondItem="KTn-t3-Iif" secondAttribute="bottom" id="aS9-A9-va2"/>
                                                         <constraint firstItem="lVU-5s-XlK" firstAttribute="leading" secondItem="TFl-w6-WmZ" secondAttribute="leading" id="deB-od-KTv"/>
                                                         <constraint firstAttribute="trailing" secondItem="lVU-5s-XlK" secondAttribute="trailing" id="iIQ-kV-Llb"/>
                                                         <constraint firstItem="lVU-5s-XlK" firstAttribute="top" secondItem="D4l-IQ-gff" secondAttribute="bottom" id="iaL-i4-Y7Z"/>
+                                                        <constraint firstItem="KTn-t3-Iif" firstAttribute="top" secondItem="D4l-IQ-gff" secondAttribute="bottom" id="mLP-g2-oQs"/>
                                                     </constraints>
                                                 </stackView>
                                             </subviews>
@@ -652,7 +684,9 @@
                                         <connections>
                                             <outlet property="attendanceCheck" destination="7WN-Tz-qDN" id="Udd-CO-uNc"/>
                                             <outlet property="attendanceView" destination="ccT-ou-pGq" id="pIp-bP-6bC"/>
+                                            <outlet property="btnAGradeLevel" destination="ev4-lg-2jP" id="fhl-9Z-Reg"/>
                                             <outlet property="btnHDGradeLevel" destination="K6E-r0-RGK" id="dZe-UZ-waB"/>
+                                            <outlet property="gradeAView" destination="KTn-t3-Iif" id="xsy-E7-d5N"/>
                                             <outlet property="gradeHDView" destination="lVU-5s-XlK" id="DET-g3-QJI"/>
                                             <outlet property="studentIDLabel" destination="nnq-9M-yeI" id="CvK-nB-jj6"/>
                                             <outlet property="studentNameLabel" destination="a1F-91-zoT" id="GjQ-oL-hT8"/>
