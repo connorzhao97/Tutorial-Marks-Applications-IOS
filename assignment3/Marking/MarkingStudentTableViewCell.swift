@@ -12,6 +12,7 @@ class MarkingStudentTableViewCell: UITableViewCell, UIPickerViewDelegate & UIPic
     @IBOutlet var attendanceView: UIView!
     @IBOutlet var gradeHDView: UIView!
     @IBOutlet var gradeAView: UIView!
+    @IBOutlet var scoreOutOfView: UIView!
     
     // Labels
     @IBOutlet var studentNameLabel: UILabel!
@@ -21,6 +22,11 @@ class MarkingStudentTableViewCell: UITableViewCell, UIPickerViewDelegate & UIPic
     @IBOutlet var attendanceCheck: UISwitch!
     @IBOutlet var btnHDGradeLevel: UIButton!
     @IBOutlet var btnAGradeLevel: UIButton!
+    // Score out of 100
+    @IBOutlet var scoreTF: UITextField!
+    @IBOutlet var btnScoreOutOfLabel: UIButton!
+    @IBOutlet var displayScoreOutOf: UILabel!
+    
     
 
     let screenWidth = UIScreen.main.bounds.width - 10
@@ -31,6 +37,7 @@ class MarkingStudentTableViewCell: UITableViewCell, UIPickerViewDelegate & UIPic
     var studentIndex: Int?
     var HDGradeIndex = 0
     var AGradeIndex = 0
+    var ScoreOutOfUpdateState = false
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,6 +50,7 @@ class MarkingStudentTableViewCell: UITableViewCell, UIPickerViewDelegate & UIPic
         // Configure the view for the selected state
     }
 
+    // Attendance changed function
     @IBAction func attendanceValueChanged(_ sender: Any) {
         var grade = 0.0
         if attendanceCheck.isOn {
@@ -51,6 +59,7 @@ class MarkingStudentTableViewCell: UITableViewCell, UIPickerViewDelegate & UIPic
         self.updateGrade(grade, markingScheme: "Attendance")
     }
 
+    // Grade Level HD changed function
     //https://www.youtube.com/watch?v=9Fy0Gc1l3VE
     @IBAction func gradeHDValueChanged(_ sender: Any) {
         let vc = UIViewController()
@@ -99,7 +108,7 @@ class MarkingStudentTableViewCell: UITableViewCell, UIPickerViewDelegate & UIPic
         self.window?.rootViewController?.present(alert, animated: true, completion: nil)
 
     }
-    
+    // Grade Level A changed function
     @IBAction func gradeAValueChanged(_ sender: Any) {
         let vc = UIViewController()
 
@@ -143,9 +152,41 @@ class MarkingStudentTableViewCell: UITableViewCell, UIPickerViewDelegate & UIPic
         self.window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
     
+    // Score out of 100 function
+    @IBAction func scoreOutOfChanged(_ sender: Any) {
+        if self.ScoreOutOfUpdateState{
+            // Save the changes
+            self.btnScoreOutOfLabel.setTitle("Update", for: .normal)
+            self.displayScoreOutOf.isHidden=false
+            self.scoreTF.isEnabled=false
+            self.scoreTF.isHidden=true
+            // Update student's score
+            if let grade  = Double(self.scoreTF.text ?? "0.0"){
+                print(grade)
+                if grade < 0.0 || grade > 100.0{
+                    let alert = UIAlertController(title: "Score out of range!", message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                }else{
+                    self.updateGrade(grade, markingScheme: "ScoreOutOf")
+                }
+            }else{
+                let alert = UIAlertController(title: "Please enter a valid score!", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+            }
+        }else{
+            self.btnScoreOutOfLabel.setTitle("Save", for: .normal)
+            self.displayScoreOutOf.isHidden=true
+            self.scoreTF.isHidden=false
+            self.scoreTF.isEnabled=true
+            self.scoreTF.text = self.displayScoreOutOf.text
+        }
+        self.ScoreOutOfUpdateState = !self.ScoreOutOfUpdateState
+    }
     
     
-    
+    // MARK: Picker View
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1
     }
@@ -194,6 +235,8 @@ class MarkingStudentTableViewCell: UITableViewCell, UIPickerViewDelegate & UIPic
                         self.btnHDGradeLevel.setTitle(HDGrades[self.HDGradeIndex], for: .normal)
                     case "AGradeLevel":
                         self.btnAGradeLevel.setTitle(AGrades[self.AGradeIndex], for: .normal)
+                    case "ScoreOutOf":
+                        self.displayScoreOutOf.text = String(grade)
                     default:
                         break
                     }

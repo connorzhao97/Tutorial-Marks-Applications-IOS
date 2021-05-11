@@ -123,7 +123,7 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
                 initMarkingScheme = 0
             case "Multiple Checkpoints":
                 initMarkingScheme = 1
-            case "Score out of x":
+            case "Score out of 100":
                 initMarkingScheme = 2
             case "Grade Level (HD)":
                 initMarkingScheme = 3
@@ -158,7 +158,7 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
 
             self.selectedWeekLabel.text = self.selectedWeek
             self.selectedMarkingSchemeLabel.text = self.selectedMarkingScheme
-
+            
             // Reload data after selecting weeks or marking schemes
             self.tableView.reloadData()
 
@@ -170,8 +170,7 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
                     } else {
                         self.selectedMarkingSchemeLabel.text = self.selectedMarkingScheme
                         markingScheme.schemes[self.selectedWeek] = self.selectedMarkingScheme
-                        print(markingScheme.schemes)
-                        print("Document successfully updated")
+                        self.tableView.reloadData()
                         //TODO: Set all score to 0
                     }
                 }
@@ -223,7 +222,7 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
                     changedMarkingScheme = 0
                 case "Multiple Checkpoints":
                     changedMarkingScheme = 1
-                case "Score out of x":
+                case "Score out of 100":
                     changedMarkingScheme = 2
                 case "Grade Level (HD)":
                     changedMarkingScheme = 3
@@ -269,6 +268,7 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
                 studentCell.attendanceView.isHidden = false
                 studentCell.gradeHDView.isHidden = true
                 studentCell.gradeAView.isHidden = true
+                studentCell.scoreOutOfView.isHidden = true
                 if studentCell.grade == 0.0 {
                     studentCell.attendanceCheck.isOn = false
                 } else if studentCell.grade == 100.0 {
@@ -278,6 +278,7 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
                 studentCell.attendanceView.isHidden = true
                 studentCell.gradeHDView.isHidden = false
                 studentCell.gradeAView.isHidden = true
+                studentCell.scoreOutOfView.isHidden = true
                 switch studentCell.grade {
                 case 100:
                     studentCell.HDGradeIndex = 0
@@ -304,6 +305,7 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
                 studentCell.attendanceView.isHidden = true
                 studentCell.gradeHDView.isHidden = true
                 studentCell.gradeAView.isHidden = false
+                studentCell.scoreOutOfView.isHidden = true
                 switch studentCell.grade {
                 case 100:
                     studentCell.AGradeIndex = 0
@@ -323,6 +325,12 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
                 default:
                     break;
                 }
+            case "Score out of 100":
+                studentCell.attendanceView.isHidden = true
+                studentCell.gradeHDView.isHidden = true
+                studentCell.gradeAView.isHidden = true
+                studentCell.scoreOutOfView.isHidden = false
+                studentCell.displayScoreOutOf.text = String(studentCell.grade)
             default: break
             }
         }

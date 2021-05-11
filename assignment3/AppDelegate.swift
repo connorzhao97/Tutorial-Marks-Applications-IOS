@@ -13,7 +13,7 @@ let db = Firestore.firestore()
 let studentCollection = db.collection("ios_students")
 let markingSchemeCollection = db.collection("ios_schemes")
 let weeks = ["week1", "week2", "week3", "week4", "week5", "week6", "week7", "week8", "week9", "week10", "week11", "week12"]
-let schemes = ["Attendance", "Multiple Checkpoints", "Score out of x", "Grade Level (HD)", "Grade Level (A)"]
+let schemes = ["Attendance", "Multiple Checkpoints", "Score out of 100", "Grade Level (HD)", "Grade Level (A)"]
 let HDGrades = ["HD+", "HD", "DN", "CR", "PP", "NN"]
 let AGrades = ["A", "B", "C", "D", "F"]
 
