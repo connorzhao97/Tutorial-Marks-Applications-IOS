@@ -269,16 +269,42 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
                 studentCell.gradeHDView.isHidden = true
                 studentCell.gradeAView.isHidden = true
                 studentCell.scoreOutOfView.isHidden = true
+                studentCell.multipleCheckpointView.isHidden=true
                 if studentCell.grade == 0.0 {
                     studentCell.attendanceCheck.isOn = false
                 } else if studentCell.grade == 100.0 {
                     studentCell.attendanceCheck.isOn = true
+                }
+            case "Multiple Checkpoints":
+                studentCell.attendanceView.isHidden = true
+                studentCell.gradeHDView.isHidden = true
+                studentCell.gradeAView.isHidden = true
+                studentCell.scoreOutOfView.isHidden = true
+                studentCell.multipleCheckpointView.isHidden=false
+                switch studentCell.grade{
+                case 100:
+                    studentCell.checkpoint1Switch.isOn=true
+                    studentCell.checkpoint2Label.isEnabled=true
+                    studentCell.checkpoint2Switch.isEnabled=true
+                    studentCell.checkpoint2Switch.isOn=true
+                case 50:
+                    studentCell.checkpoint1Switch.isOn=true
+                    studentCell.checkpoint2Label.isEnabled=true
+                    studentCell.checkpoint2Switch.isEnabled=true
+                    studentCell.checkpoint2Switch.isOn=false
+                case 0:
+                    studentCell.checkpoint1Switch.isOn=false
+                    studentCell.checkpoint2Label.isEnabled=false
+                    studentCell.checkpoint2Switch.isEnabled=false
+                    studentCell.checkpoint2Switch.isOn=false
+                default:break;
                 }
             case "Grade Level (HD)":
                 studentCell.attendanceView.isHidden = true
                 studentCell.gradeHDView.isHidden = false
                 studentCell.gradeAView.isHidden = true
                 studentCell.scoreOutOfView.isHidden = true
+                studentCell.multipleCheckpointView.isHidden=true
                 switch studentCell.grade {
                 case 100:
                     studentCell.HDGradeIndex = 0
@@ -306,6 +332,7 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
                 studentCell.gradeHDView.isHidden = true
                 studentCell.gradeAView.isHidden = false
                 studentCell.scoreOutOfView.isHidden = true
+                studentCell.multipleCheckpointView.isHidden=true
                 switch studentCell.grade {
                 case 100:
                     studentCell.AGradeIndex = 0
@@ -330,6 +357,7 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
                 studentCell.gradeHDView.isHidden = true
                 studentCell.gradeAView.isHidden = true
                 studentCell.scoreOutOfView.isHidden = false
+                studentCell.multipleCheckpointView.isHidden=true
                 studentCell.displayScoreOutOf.text = String(studentCell.grade)
             default: break
             }

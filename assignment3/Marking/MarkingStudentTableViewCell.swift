@@ -13,6 +13,8 @@ class MarkingStudentTableViewCell: UITableViewCell, UIPickerViewDelegate & UIPic
     @IBOutlet var gradeHDView: UIView!
     @IBOutlet var gradeAView: UIView!
     @IBOutlet var scoreOutOfView: UIView!
+    @IBOutlet var multipleCheckpointView: UIView!
+    
     
     // Labels
     @IBOutlet var studentNameLabel: UILabel!
@@ -26,6 +28,11 @@ class MarkingStudentTableViewCell: UITableViewCell, UIPickerViewDelegate & UIPic
     @IBOutlet var scoreTF: UITextField!
     @IBOutlet var btnScoreOutOfLabel: UIButton!
     @IBOutlet var displayScoreOutOf: UILabel!
+    // Multiple checkbox
+    @IBOutlet var checkpoint2Label: UILabel!
+    @IBOutlet var checkpoint1Switch: UISwitch!
+    @IBOutlet var checkpoint2Switch: UISwitch!
+    
     
     
 
@@ -58,6 +65,27 @@ class MarkingStudentTableViewCell: UITableViewCell, UIPickerViewDelegate & UIPic
         }
         self.updateGrade(grade, markingScheme: "Attendance")
     }
+    
+    // Multiple Checkpoint function
+    
+    @IBAction func checkpoint1Changed(_ sender: Any) {
+        var grade = 0.0
+        if checkpoint1Switch.isOn{
+            grade = 50.0
+        }
+        self.updateGrade(grade, markingScheme: "multipleCheckpoint")
+    }
+    
+    @IBAction func checkpoint2Changed(_ sender: Any) {
+        var grade = 50.0
+        if checkpoint2Switch.isOn{
+            grade=100.0
+        }
+        self.updateGrade(grade, markingScheme: "multipleCheckpoint")
+    }
+    
+    
+    
 
     // Grade Level HD changed function
     //https://www.youtube.com/watch?v=9Fy0Gc1l3VE
@@ -237,6 +265,26 @@ class MarkingStudentTableViewCell: UITableViewCell, UIPickerViewDelegate & UIPic
                         self.btnAGradeLevel.setTitle(AGrades[self.AGradeIndex], for: .normal)
                     case "ScoreOutOf":
                         self.displayScoreOutOf.text = String(grade)
+                    case "multipleCheckpoint":
+                        switch grade {
+                        case 0.0:
+                            self.checkpoint1Switch.isOn=false
+                            self.checkpoint2Switch.isOn=false
+                            self.checkpoint2Switch.isEnabled=false
+                            self.checkpoint2Label.isEnabled=false
+                        case 50.0:
+                            self.checkpoint2Switch.isEnabled=true
+                            self.checkpoint2Label.isEnabled=true
+                            self.checkpoint1Switch.isOn=true
+                            self.checkpoint2Switch.isOn=false
+                        case 100.0:
+                            self.checkpoint2Switch.isEnabled=true
+                            self.checkpoint2Label.isEnabled=true
+                            self.checkpoint1Switch.isOn=true
+                            self.checkpoint2Switch.isOn=true
+                        default:
+                            break;
+                        }
                     default:
                         break
                     }

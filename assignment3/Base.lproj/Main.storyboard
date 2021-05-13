@@ -544,26 +544,26 @@
                                                     <rect key="frame" x="10" y="0.0" width="408" height="150"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="D4l-IQ-gff">
-                                                            <rect key="frame" x="0.0" y="0.0" width="408" height="90"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="408" height="150"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="cG4-h1-bIr">
-                                                                    <rect key="frame" x="0.0" y="7" width="80" height="76.666666666666671"/>
+                                                                    <rect key="frame" x="0.0" y="37.000000000000007" width="80" height="76.666666666666686"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="80" id="9PK-z0-tHd"/>
                                                                         <constraint firstAttribute="width" constant="80" id="bV4-Jz-fEs"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0Ve-bn-5ON">
-                                                                    <rect key="frame" x="88" y="5" width="320" height="80"/>
+                                                                    <rect key="frame" x="88" y="5" width="320" height="140"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1F-91-zoT">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
                                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnq-9M-yeI">
-                                                                            <rect key="frame" x="0.0" y="50" width="320" height="30"/>
+                                                                            <rect key="frame" x="0.0" y="110" width="320" height="30"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="30" id="jfx-hz-Mse"/>
                                                                             </constraints>
@@ -582,7 +582,7 @@
                                                             </constraints>
                                                         </stackView>
                                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ccT-ou-pGq">
-                                                            <rect key="frame" x="0.0" y="90" width="408" height="60"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="408" height="60"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attendance:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ler-ZL-pxA">
                                                                     <rect key="frame" x="114" y="20" width="92.333333333333314" height="20.333333333333329"/>
@@ -606,7 +606,7 @@
                                                             </constraints>
                                                         </view>
                                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lVU-5s-XlK">
-                                                            <rect key="frame" x="0.0" y="90" width="408" height="60"/>
+                                                            <rect key="frame" x="0.0" y="150" width="408" height="60"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6E-r0-RGK">
                                                                     <rect key="frame" x="100" y="15" width="208" height="30"/>
@@ -633,11 +633,11 @@
                                                                 <constraint firstAttribute="height" constant="60" id="kyB-Ld-xbQ"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KTn-t3-Iif">
-                                                            <rect key="frame" x="0.0" y="90" width="408" height="60"/>
+                                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KTn-t3-Iif">
+                                                            <rect key="frame" x="0.0" y="150" width="408" height="0.0"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ev4-lg-2jP">
-                                                                    <rect key="frame" x="100" y="15" width="208" height="30"/>
+                                                                    <rect key="frame" x="100" y="15" width="208" height="32"/>
                                                                     <color key="backgroundColor" name="AccentColor"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                     <state key="normal" title="A">
@@ -662,7 +662,7 @@
                                                             </constraints>
                                                         </view>
                                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HiB-gr-69b">
-                                                            <rect key="frame" x="0.0" y="90" width="408" height="60"/>
+                                                            <rect key="frame" x="0.0" y="150" width="408" height="0.0"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gj2-YU-SAD">
                                                                     <rect key="frame" x="303" y="15" width="100" height="30"/>
@@ -718,8 +718,44 @@
                                                                 <constraint firstAttribute="bottom" secondItem="gj2-YU-SAD" secondAttribute="bottom" constant="15" id="zu3-6t-hfQ"/>
                                                             </constraints>
                                                         </view>
+                                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f7H-AH-zP5">
+                                                            <rect key="frame" x="0.0" y="150" width="408" height="0.0"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Checkpoint 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GD6-ye-pEG">
+                                                                    <rect key="frame" x="26" y="20" width="99" height="21"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hCP-px-e6I">
+                                                                    <rect key="frame" x="133" y="15" width="49" height="31"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <connections>
+                                                                        <action selector="checkpoint1Changed:" destination="Wkr-qu-grP" eventType="valueChanged" id="2vW-A2-6cA"/>
+                                                                    </connections>
+                                                                </switch>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Checkpoint 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zmp-tI-OMv">
+                                                                    <rect key="frame" x="215" y="20" width="102" height="21"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FBf-7U-BzD">
+                                                                    <rect key="frame" x="325" y="15" width="49" height="31"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <connections>
+                                                                        <action selector="checkpoint2Changed:" destination="Wkr-qu-grP" eventType="valueChanged" id="j4K-ea-6bd"/>
+                                                                    </connections>
+                                                                </switch>
+                                                            </subviews>
+                                                        </view>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="f7H-AH-zP5" secondAttribute="bottom" id="A48-Kd-uKc"/>
+                                                        <constraint firstItem="f7H-AH-zP5" firstAttribute="top" secondItem="D4l-IQ-gff" secondAttribute="bottom" id="G4h-Lt-1QN"/>
+                                                        <constraint firstItem="f7H-AH-zP5" firstAttribute="leading" secondItem="TFl-w6-WmZ" secondAttribute="leading" id="Gkx-nS-OeP"/>
                                                         <constraint firstAttribute="trailing" secondItem="KTn-t3-Iif" secondAttribute="trailing" id="Izx-za-3xe"/>
                                                         <constraint firstItem="HiB-gr-69b" firstAttribute="top" secondItem="D4l-IQ-gff" secondAttribute="bottom" id="MWA-3t-DRS"/>
                                                         <constraint firstAttribute="bottom" secondItem="HiB-gr-69b" secondAttribute="bottom" id="Re0-RX-EYX"/>
@@ -729,6 +765,7 @@
                                                         <constraint firstItem="lVU-5s-XlK" firstAttribute="leading" secondItem="TFl-w6-WmZ" secondAttribute="leading" id="deB-od-KTv"/>
                                                         <constraint firstAttribute="trailing" secondItem="lVU-5s-XlK" secondAttribute="trailing" id="iIQ-kV-Llb"/>
                                                         <constraint firstItem="lVU-5s-XlK" firstAttribute="top" secondItem="D4l-IQ-gff" secondAttribute="bottom" id="iaL-i4-Y7Z"/>
+                                                        <constraint firstAttribute="trailing" secondItem="f7H-AH-zP5" secondAttribute="trailing" id="jsJ-nW-6YH"/>
                                                         <constraint firstItem="KTn-t3-Iif" firstAttribute="top" secondItem="D4l-IQ-gff" secondAttribute="bottom" id="mLP-g2-oQs"/>
                                                         <constraint firstAttribute="trailing" secondItem="HiB-gr-69b" secondAttribute="trailing" id="u44-6l-Jpt"/>
                                                         <constraint firstItem="HiB-gr-69b" firstAttribute="leading" secondItem="TFl-w6-WmZ" secondAttribute="leading" id="za9-n9-o5N"/>
@@ -748,9 +785,13 @@
                                             <outlet property="btnAGradeLevel" destination="ev4-lg-2jP" id="fhl-9Z-Reg"/>
                                             <outlet property="btnHDGradeLevel" destination="K6E-r0-RGK" id="dZe-UZ-waB"/>
                                             <outlet property="btnScoreOutOfLabel" destination="gj2-YU-SAD" id="fqY-qR-rIk"/>
+                                            <outlet property="checkpoint1Switch" destination="hCP-px-e6I" id="Kci-uu-W3h"/>
+                                            <outlet property="checkpoint2Label" destination="Zmp-tI-OMv" id="cX0-kh-oDi"/>
+                                            <outlet property="checkpoint2Switch" destination="FBf-7U-BzD" id="1Tn-vL-HES"/>
                                             <outlet property="displayScoreOutOf" destination="j4m-sa-6BB" id="bTD-N1-4yg"/>
                                             <outlet property="gradeAView" destination="KTn-t3-Iif" id="xsy-E7-d5N"/>
                                             <outlet property="gradeHDView" destination="lVU-5s-XlK" id="DET-g3-QJI"/>
+                                            <outlet property="multipleCheckpointView" destination="f7H-AH-zP5" id="Ns6-vb-bEw"/>
                                             <outlet property="scoreOutOfView" destination="HiB-gr-69b" id="b7F-gS-JWv"/>
                                             <outlet property="scoreTF" destination="BEE-OR-rs7" id="abi-nW-MoN"/>
                                             <outlet property="studentIDLabel" destination="nnq-9M-yeI" id="CvK-nB-jj6"/>
