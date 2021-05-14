@@ -19,6 +19,9 @@ class MarkingStudentTableViewCell: UITableViewCell, UIPickerViewDelegate & UIPic
     // Labels
     @IBOutlet var studentNameLabel: UILabel!
     @IBOutlet var studentIDLabel: UILabel!
+    
+    @IBOutlet var studentAvatar: UIImageView!
+    
 
     // Marking Scheme
     @IBOutlet var attendanceCheck: UISwitch!

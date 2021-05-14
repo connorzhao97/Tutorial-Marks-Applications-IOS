@@ -11,6 +11,6 @@ public struct Student: Codable {
     var id: String?
     var studentName: String
     var studentID: Int
-    var avatarUrl: String?
+    var avatar: Data?
     var grades: [String: Double]
 }

@@ -88,6 +88,11 @@ class StudentListViewController: UIViewController, UITableViewDelegate & UITable
         if let studentCell = cell as? StudentListTableViewCell {
             studentCell.studentNameLabel.text = student.studentName
             studentCell.studentIDLabel.text = String(student.studentID)
+            // Display student's image
+            if let avatarData = student.avatar{
+                let dataDecoded = Data(base64Encoded:avatarData, options: .ignoreUnknownCharacters)
+                studentCell.studentAvatar.image = UIImage(data: dataDecoded!)
+            }
         }
 
         return cell

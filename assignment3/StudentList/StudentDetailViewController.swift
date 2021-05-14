@@ -7,16 +7,19 @@
 
 import UIKit
 
-class StudentDetailViewController: UIViewController, UITableViewDelegate & UITableViewDataSource {
+class StudentDetailViewController: UIViewController,UIImagePickerControllerDelegate, UITableViewDelegate, UINavigationControllerDelegate & UITableViewDataSource {
 
     @IBOutlet var studentNameTF: UITextField!
     @IBOutlet var studentIDTF: UITextField!
     @IBOutlet var summaryGradeLabel: UILabel!
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var studentAvatar: UIImageView!
+    
 
     var student: Student?
     var studentIndex: Int?
     var alertLoading: UIAlertController?
+    var avatarData: Data? = nil
 
 
 
@@ -27,6 +30,13 @@ class StudentDetailViewController: UIViewController, UITableViewDelegate & UITab
         if let displayStudent = student {
             studentNameTF.text = displayStudent.studentName
             studentIDTF.text = String(displayStudent.studentID)
+            
+            // Display student's image
+            if let avatarData = displayStudent.avatar{
+                let dataDecoded = Data(base64Encoded:avatarData, options: .ignoreUnknownCharacters)
+                studentAvatar.image = UIImage(data: dataDecoded!)
+            }
+          
 
             var summaryGrade = 0.0
             for week in weeks {
@@ -61,6 +71,10 @@ class StudentDetailViewController: UIViewController, UITableViewDelegate & UITab
         if editable {
             student!.studentName = studentName
             student!.studentID = Int(studentID) ?? -1
+            
+            if let avatarData = avatarData{
+                student!.avatar = avatarData
+            }
 
             // https://stackoverflow.com/questions/27960556/loading-an-overlay-when-running-long-tasks-in-ios
             // Creating loading indicator
@@ -148,6 +162,41 @@ class StudentDetailViewController: UIViewController, UITableViewDelegate & UITab
             present(shareViewController, animated: true, completion: nil)
         }
     }
+    
+    
+    @IBAction func takeAPicture(_ sender: UIButton) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        } else {
+            print("Photo library not available")
+        }
+    }
+    
+    // MARK: - Image Picker functions
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        //https://www.hackingwithswift.com/example-code/uikit/how-to-take-a-photo-using-the-camera-and-uiimagepickercontroller
+        // Original Image is too large so firebase cannot save
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
+            studentAvatar.image = image
+            
+            //https://stackoverflow.com/questions/44780937/storing-and-retrieving-image-in-sqlite-with-swift
+            //https://developer.apple.com/documentation/uikit/uiimage/1624115-jpegdata
+            let imageData = image.jpegData(compressionQuality: 0)
+           avatarData = imageData?.base64EncodedData(options: .lineLength64Characters)
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
 
 
     // MARK: - Table View functions

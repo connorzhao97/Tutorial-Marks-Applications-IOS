@@ -262,6 +262,12 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
 
             studentCell.selectedWeek = self.selectedWeek
             studentCell.selectedScheme = markingScheme.schemes[self.selectedWeek]
+            
+            // Display student's image
+            if let avatarData = student.avatar{
+                let dataDecoded = Data(base64Encoded:avatarData, options: .ignoreUnknownCharacters)
+                studentCell.studentAvatar.image = UIImage(data: dataDecoded!)
+            }
 
             switch studentCell.selectedScheme {
             case "Attendance":
