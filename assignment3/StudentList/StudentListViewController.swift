@@ -10,9 +10,10 @@ import Firebase
 import FirebaseFirestoreSwift
 
 
-class StudentListViewController: UIViewController, UITableViewDelegate & UITableViewDataSource {
+class StudentListViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate & UITableViewDataSource {
 
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var searchBar: UISearchBar!
 
 
     override func viewDidLoad() {
@@ -21,6 +22,7 @@ class StudentListViewController: UIViewController, UITableViewDelegate & UITable
         //https://www.codingexplorer.com/getting-started-uitableview-swift/
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -31,8 +33,26 @@ class StudentListViewController: UIViewController, UITableViewDelegate & UITable
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        searchStudents = students
+        searchBar.text=""
         self.tableView.reloadData()
     }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let text = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        if text.isEmpty {
+            searchStudents = students
+        } else {
+            //https://www.donnywals.com/how-to-filter-an-array-in-swift/
+            searchStudents = students.filter { student in
+                return student.studentName.lowercased().contains(text.lowercased()) || String(student.studentID).contains(text)
+            }
+        }
+        tableView.reloadData()
+    }
+
+
+
 
     @IBAction func shareAllGrades(_ sender: Any) {
         var content = ""
@@ -56,7 +76,7 @@ class StudentListViewController: UIViewController, UITableViewDelegate & UITable
                     Week10: \(student.grades["week10"] ?? 0.0),
                     Week11: \(student.grades["week11"] ?? 0.0),
                     Week12: \(student.grades["week11"] ?? 0.0),
-                    Summary Grade: \(String(format: "%.2f", summaryGrade))/1200 (\(String(format: "%.2f", summaryGrade / 12.0)) %).\n
+                    Summary Grade: \(String(format: "%.2f", summaryGrade))/1200 (\(String(format: "%.2f", summaryGrade / 12.0)) %).\n\n
                     """
         }
         let shareViewController = UIActivityViewController(activityItems: [content], applicationActivities: [])
@@ -75,7 +95,7 @@ class StudentListViewController: UIViewController, UITableViewDelegate & UITable
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return students.count
+        return searchStudents.count
     }
 
 
@@ -83,15 +103,17 @@ class StudentListViewController: UIViewController, UITableViewDelegate & UITable
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "StudentListTableViewCell", for: indexPath)
 
-        let student = students[indexPath.row]
+        let student = searchStudents[indexPath.row]
 
         if let studentCell = cell as? StudentListTableViewCell {
             studentCell.studentNameLabel.text = student.studentName
             studentCell.studentIDLabel.text = String(student.studentID)
             // Display student's image
-            if let avatarData = student.avatar{
-                let dataDecoded = Data(base64Encoded:avatarData, options: .ignoreUnknownCharacters)
+            if let avatarData = student.avatar {
+                let dataDecoded = Data(base64Encoded: avatarData, options: .ignoreUnknownCharacters)
                 studentCell.studentAvatar.image = UIImage(data: dataDecoded!)
+            }else{
+                studentCell.studentAvatar.image = UIImage(systemName: "person.fill")
             }
         }
 
@@ -144,14 +166,20 @@ class StudentListViewController: UIViewController, UITableViewDelegate & UITable
                 fatalError("The selected cell is not being displayed by the table")
             }
 
-            let selectedStudent = students[indexPath.row]
+            let selectedStudent = searchStudents[indexPath.row]
+
+            // Pass the original student index (not searched student list index)
+            let originalIndex = students.firstIndex(where: { student in
+                return student.id == selectedStudent.id
+            })
 
             studentDetailViewController.student = selectedStudent
-            studentDetailViewController.studentIndex = indexPath.row
+            studentDetailViewController.studentIndex = originalIndex!
+            
+            // Dismiss keyboard
+            // https://stackoverflow.com/questions/29925373/how-to-make-keyboard-dismiss-when-i-press-out-of-searchbar-on-swift
+            searchBar.endEditing(true)
 
         }
     }
-
-
-
 }

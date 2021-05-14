@@ -267,6 +267,8 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
             if let avatarData = student.avatar{
                 let dataDecoded = Data(base64Encoded:avatarData, options: .ignoreUnknownCharacters)
                 studentCell.studentAvatar.image = UIImage(data: dataDecoded!)
+            }else{
+                studentCell.studentAvatar.image = UIImage(systemName: "person.fill")
             }
 
             switch studentCell.selectedScheme {

@@ -35,6 +35,8 @@ class StudentDetailViewController: UIViewController,UIImagePickerControllerDeleg
             if let avatarData = displayStudent.avatar{
                 let dataDecoded = Data(base64Encoded:avatarData, options: .ignoreUnknownCharacters)
                 studentAvatar.image = UIImage(data: dataDecoded!)
+            }else{
+                studentAvatar.image = UIImage(systemName: "person.fill")
             }
           
 

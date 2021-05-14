@@ -20,7 +20,7 @@ let AGrades = ["A", "B", "C", "D", "F"]
 
 // Global students data
 public var students = [Student]()
-
+public var searchStudents = [Student]()
 // Global markingScheme data
 public var markingScheme = MarkingScheme(schemes: ["week1": "Attendance", "week2": "Attendance", "week3": "Attendance", "week4": "Attendance", "week5": "Attendance", "week6": "Attendance", "week7": "Attendance", "week8": "Attendance", "week9": "Attendance", "week10": "Attendance", "week11": "Attendance", "week12": "Attendance"])
 

@@ -259,6 +259,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="pZH-S7-xQ9" id="xxT-F6-Npz"/>
                         <outlet property="tableView" destination="PJT-f8-h0P" id="ogT-Mn-8bt"/>
                     </connections>
                 </viewController>
