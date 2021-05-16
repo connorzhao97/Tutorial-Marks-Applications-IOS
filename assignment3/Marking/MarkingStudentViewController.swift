@@ -16,9 +16,9 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
 
     let screenWidth = UIScreen.main.bounds.width - 10
     let screenHeight = UIScreen.main.bounds.height / 4
-    var selectedMarkingSchemeIndex: Int = 0
     var selectedWeekIndex: Int = 0
     var selectedWeek: String = "week1"
+    var selectedMarkingSchemeIndex: Int = 0
     var selectedMarkingScheme: String = ""
 
     override func viewDidLoad() {
@@ -31,7 +31,6 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
         studentCollection.order(by: "studentID").getDocuments() { (result, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
-
             } else {
                 for document in result!.documents {
                     let conversionResult = Result {
@@ -140,7 +139,6 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
         pickerView.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
         pickerView.centerYAnchor.constraint(equalTo: vc.view.centerYAnchor).isActive = true
 
-
         let alert = UIAlertController(title: "Select Week", message: "", preferredStyle: .actionSheet)
         alert.popoverPresentationController?.sourceView = pickerView
         alert.popoverPresentationController?.sourceRect = pickerView.bounds
@@ -150,30 +148,26 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (UIAlertAction) in }))
 
         alert.addAction(UIAlertAction(title: "Select", style: .default, handler: { (UIAlertAction) in
+            let previousMarkingScheme = self.selectedMarkingScheme
+            let previousMarkingSchemeIndex = self.selectedMarkingSchemeIndex
+            let previousWeek = self.selectedWeek
+            let previousWeekIndex = self.selectedWeekIndex
+
             self.selectedWeekIndex = pickerView.selectedRow(inComponent: 0)
             self.selectedMarkingSchemeIndex = pickerView.selectedRow(inComponent: 1)
 
             self.selectedWeek = weeks[self.selectedWeekIndex]
             self.selectedMarkingScheme = schemes[self.selectedMarkingSchemeIndex]
 
-            self.selectedWeekLabel.text = self.selectedWeek
-            self.selectedMarkingSchemeLabel.text = self.selectedMarkingScheme
-
-            // Reload data after selecting weeks or marking schemes
-            self.tableView.reloadData()
-
             // Change marking scheme
             if self.selectedMarkingScheme != markingScheme.schemes[self.selectedWeek] {
-                markingSchemeCollection.document(markingScheme.id!).updateData(["schemes.\(self.selectedWeek)": self.selectedMarkingScheme]) { err in
-                    if let err = err {
-                        print("Error updating document: \(err)")
-                    } else {
-                        self.selectedMarkingSchemeLabel.text = self.selectedMarkingScheme
-                        markingScheme.schemes[self.selectedWeek] = self.selectedMarkingScheme
-                        self.tableView.reloadData()
-                        //TODO: Set all score to 0
-                    }
-                }
+                self.showAlert(previousWeek, previousWeekIndex, previousMarkingScheme, previousMarkingSchemeIndex)
+            } else {
+                self.selectedWeekLabel.text = self.selectedWeek
+                self.selectedMarkingSchemeLabel.text = self.selectedMarkingScheme
+
+                // Reload data after selecting weeks or marking schemes
+                self.tableView.reloadData()
             }
         }))
 
@@ -364,6 +358,48 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    func showAlert(_ previousWeek: String, _ previousWeekIndex: Int, _ previousMarkingScheme: String, _ previousMarkingSchemeIndex: Int) {
+        let changeAlert = UIAlertController(title: "Alert", message: "Change to another marking scheme will lose all existing data for the week!", preferredStyle: .alert)
+        changeAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            self.selectedWeekLabel.text = previousWeek
+            self.selectedWeek = previousWeek
+            self.selectedWeekIndex = previousWeekIndex
+            self.selectedMarkingSchemeLabel.text = previousMarkingScheme
+            self.selectedMarkingScheme = previousMarkingScheme
+            self.selectedMarkingSchemeIndex = previousMarkingSchemeIndex
+        }))
+        changeAlert.addAction(UIAlertAction(title: "Change", style: .destructive, handler: { _ in
+            markingSchemeCollection.document(markingScheme.id!).updateData(["schemes.\(self.selectedWeek)": self.selectedMarkingScheme]) { err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    self.selectedWeekLabel.text = self.selectedWeek
+                    self.selectedMarkingSchemeLabel.text = self.selectedMarkingScheme
+                    markingScheme.schemes[self.selectedWeek] = self.selectedMarkingScheme
+                    //TODO: Set all score to 0
+                    //https://firebase.google.com/docs/firestore/manage-data/transactions#batched-writes
+                    let batch = db.batch()
+                    for student in students {
+                        let stuRef = studentCollection.document(student.id!)
+                        batch.updateData(["grades.\(self.selectedWeek)": 0], forDocument: stuRef)
+                    }
+                    batch.commit() { err in
+                        if let err = err {
+                            print("Error writing batch \(err)")
+                        } else {
+                            print("Batch write succeeded.")
+                            for index in 0..<students.count {
+                                students[index].grades[self.selectedWeek] = 0
+                            }
+                            self.tableView.reloadData()
+                        }
+                    }
+                }
+            }
+        }))
+        self.present(changeAlert, animated: true, completion: nil)
     }
 
 }

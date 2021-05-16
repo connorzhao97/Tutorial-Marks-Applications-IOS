@@ -865,32 +865,36 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u58-ZX-ZAG">
-                                        <rect key="frame" x="390" y="23" width="30" height="30"/>
-                                        <state key="normal" title="Edit"/>
-                                        <connections>
-                                            <action selector="popUpPicker:" destination="Lfg-1W-cbG" eventType="touchUpInside" id="NW5-5n-GRi"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attendance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BvA-sW-H3P">
                                         <rect key="frame" x="165" y="47.333333333333343" width="87.666666666666686" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u58-ZX-ZAG">
+                                        <rect key="frame" x="387" y="23" width="33" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="33" id="5RY-GT-tem"/>
+                                            <constraint firstAttribute="height" constant="31" id="jp8-P6-iXE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" image="square.and.pencil" catalog="system"/>
+                                        <connections>
+                                            <action selector="popUpPicker:" destination="Lfg-1W-cbG" eventType="touchUpInside" id="NW5-5n-GRi"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="u58-ZX-ZAG" secondAttribute="bottom" constant="24" id="4dS-e2-OUv"/>
-                                    <constraint firstItem="u58-ZX-ZAG" firstAttribute="top" secondItem="RgR-U8-u5O" secondAttribute="top" constant="23" id="4iL-RC-oHO"/>
+                                    <constraint firstAttribute="trailing" secondItem="u58-ZX-ZAG" secondAttribute="trailing" constant="8" id="AWO-cr-HVg"/>
                                     <constraint firstItem="LDP-Yg-Svk" firstAttribute="top" secondItem="RgR-U8-u5O" secondAttribute="top" constant="12" id="EUz-JV-KKj"/>
                                     <constraint firstItem="LDP-Yg-Svk" firstAttribute="leading" secondItem="Ppv-Ns-Msd" secondAttribute="trailing" constant="95" id="Mgd-KY-XWm"/>
                                     <constraint firstItem="BvA-sW-H3P" firstAttribute="leading" secondItem="fs9-Zy-db1" secondAttribute="trailing" constant="4" id="UDv-bs-JfO"/>
                                     <constraint firstItem="Ppv-Ns-Msd" firstAttribute="top" secondItem="RgR-U8-u5O" secondAttribute="top" constant="12" id="UkE-3Z-LvQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="u58-ZX-ZAG" secondAttribute="trailing" constant="8" id="dZv-mD-nLe"/>
                                     <constraint firstItem="fs9-Zy-db1" firstAttribute="top" secondItem="Ppv-Ns-Msd" secondAttribute="bottom" constant="15" id="lBt-VO-jLZ"/>
                                     <constraint firstItem="Ppv-Ns-Msd" firstAttribute="leading" secondItem="RgR-U8-u5O" secondAttribute="leading" constant="19" id="nVh-fq-RpR"/>
                                     <constraint firstItem="fs9-Zy-db1" firstAttribute="leading" secondItem="RgR-U8-u5O" secondAttribute="leading" constant="19" id="oRc-5U-zwX"/>
+                                    <constraint firstItem="u58-ZX-ZAG" firstAttribute="top" secondItem="RgR-U8-u5O" secondAttribute="top" constant="23" id="q5p-ZS-uFp"/>
                                     <constraint firstItem="BvA-sW-H3P" firstAttribute="top" secondItem="LDP-Yg-Svk" secondAttribute="bottom" constant="15" id="z6R-RI-hW8"/>
                                 </constraints>
                             </view>
@@ -946,6 +950,7 @@
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="person.fill.badge.plus" catalog="system" width="128" height="124"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <image name="trash.fill" catalog="system" width="121" height="128"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
