@@ -656,57 +656,52 @@
                                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lVU-5s-XlK">
                                                             <rect key="frame" x="0.0" y="90" width="408" height="60"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6E-r0-RGK">
-                                                                    <rect key="frame" x="100" y="15" width="208" height="30"/>
-                                                                    <color key="backgroundColor" name="AccentColor"/>
-                                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
-                                                                    <state key="normal" title="HD">
-                                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    </state>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                            <integer key="value" value="10"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                    </userDefinedRuntimeAttributes>
+                                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="FoM-ok-ae7">
+                                                                    <rect key="frame" x="63" y="14" width="281" height="33"/>
+                                                                    <segments>
+                                                                        <segment title="HD+"/>
+                                                                        <segment title="HD"/>
+                                                                        <segment title="DN"/>
+                                                                        <segment title="CR"/>
+                                                                        <segment title="PP"/>
+                                                                        <segment title="NN"/>
+                                                                    </segments>
                                                                     <connections>
-                                                                        <action selector="gradeHDValueChanged:" destination="Wkr-qu-grP" eventType="touchUpInside" id="0UD-cC-z23"/>
+                                                                        <action selector="gradeHDValueChanged:" destination="Wkr-qu-grP" eventType="valueChanged" id="dKG-eE-q8K"/>
                                                                     </connections>
-                                                                </button>
+                                                                </segmentedControl>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="K6E-r0-RGK" firstAttribute="leading" secondItem="lVU-5s-XlK" secondAttribute="leading" constant="100" id="73K-lE-0FA"/>
-                                                                <constraint firstAttribute="trailing" secondItem="K6E-r0-RGK" secondAttribute="trailing" constant="100" id="THS-FP-Jiy"/>
-                                                                <constraint firstItem="K6E-r0-RGK" firstAttribute="top" secondItem="lVU-5s-XlK" secondAttribute="top" constant="15" id="VFU-Ez-6KJ"/>
-                                                                <constraint firstAttribute="bottom" secondItem="K6E-r0-RGK" secondAttribute="bottom" constant="15" id="Whv-LW-u6m"/>
+                                                                <constraint firstItem="FoM-ok-ae7" firstAttribute="leading" secondItem="lVU-5s-XlK" secondAttribute="leading" constant="63" id="7oZ-xy-Jc2"/>
+                                                                <constraint firstAttribute="bottom" secondItem="FoM-ok-ae7" secondAttribute="bottom" constant="14" id="P0h-ke-5po"/>
+                                                                <constraint firstAttribute="trailing" secondItem="FoM-ok-ae7" secondAttribute="trailing" constant="64" id="fFP-gP-Mqo"/>
                                                                 <constraint firstAttribute="height" constant="60" id="kyB-Ld-xbQ"/>
+                                                                <constraint firstItem="FoM-ok-ae7" firstAttribute="top" secondItem="lVU-5s-XlK" secondAttribute="top" constant="14" id="u3B-0k-eLy"/>
                                                             </constraints>
                                                         </view>
                                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KTn-t3-Iif">
                                                             <rect key="frame" x="0.0" y="90" width="408" height="60"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ev4-lg-2jP">
-                                                                    <rect key="frame" x="100" y="15" width="208" height="30"/>
-                                                                    <color key="backgroundColor" name="AccentColor"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                    <state key="normal" title="A">
-                                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    </state>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                            <integer key="value" value="10"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                    </userDefinedRuntimeAttributes>
+                                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nJR-Xn-mJv">
+                                                                    <rect key="frame" x="70" y="14" width="268" height="33"/>
+                                                                    <segments>
+                                                                        <segment title="A"/>
+                                                                        <segment title="B"/>
+                                                                        <segment title="C"/>
+                                                                        <segment title="D"/>
+                                                                        <segment title="F"/>
+                                                                    </segments>
                                                                     <connections>
-                                                                        <action selector="gradeAValueChanged:" destination="Wkr-qu-grP" eventType="touchUpInside" id="Slg-xH-oGi"/>
+                                                                        <action selector="gradeAValueChanged:" destination="Wkr-qu-grP" eventType="valueChanged" id="fD6-sa-xUL"/>
                                                                     </connections>
-                                                                </button>
+                                                                </segmentedControl>
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="ev4-lg-2jP" secondAttribute="trailing" constant="100" id="LGT-Gc-4TC"/>
-                                                                <constraint firstItem="ev4-lg-2jP" firstAttribute="top" secondItem="KTn-t3-Iif" secondAttribute="top" constant="15" id="dFF-pz-yvs"/>
-                                                                <constraint firstAttribute="bottom" secondItem="ev4-lg-2jP" secondAttribute="bottom" constant="15" id="lT1-Sz-AC7"/>
-                                                                <constraint firstItem="ev4-lg-2jP" firstAttribute="leading" secondItem="KTn-t3-Iif" secondAttribute="leading" constant="100" id="zgu-Sw-rXL"/>
+                                                                <constraint firstItem="nJR-Xn-mJv" firstAttribute="leading" secondItem="KTn-t3-Iif" secondAttribute="leading" constant="70" id="1fE-9Q-x7d"/>
+                                                                <constraint firstAttribute="bottom" secondItem="nJR-Xn-mJv" secondAttribute="bottom" constant="14" id="c3l-lr-zdG"/>
+                                                                <constraint firstAttribute="trailing" secondItem="nJR-Xn-mJv" secondAttribute="trailing" constant="70" id="fAa-GP-hvp"/>
+                                                                <constraint firstItem="nJR-Xn-mJv" firstAttribute="top" secondItem="KTn-t3-Iif" secondAttribute="top" constant="14" id="qu0-v5-Lre"/>
                                                             </constraints>
                                                         </view>
                                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HiB-gr-69b">
@@ -830,8 +825,6 @@
                                         <connections>
                                             <outlet property="attendanceCheck" destination="7WN-Tz-qDN" id="Udd-CO-uNc"/>
                                             <outlet property="attendanceView" destination="ccT-ou-pGq" id="pIp-bP-6bC"/>
-                                            <outlet property="btnAGradeLevel" destination="ev4-lg-2jP" id="fhl-9Z-Reg"/>
-                                            <outlet property="btnHDGradeLevel" destination="K6E-r0-RGK" id="dZe-UZ-waB"/>
                                             <outlet property="btnScoreOutOfLabel" destination="gj2-YU-SAD" id="fqY-qR-rIk"/>
                                             <outlet property="checkpoint1Switch" destination="hCP-px-e6I" id="Kci-uu-W3h"/>
                                             <outlet property="checkpoint2Label" destination="Zmp-tI-OMv" id="cX0-kh-oDi"/>
@@ -842,6 +835,8 @@
                                             <outlet property="multipleCheckpointView" destination="f7H-AH-zP5" id="Ns6-vb-bEw"/>
                                             <outlet property="scoreOutOfView" destination="HiB-gr-69b" id="b7F-gS-JWv"/>
                                             <outlet property="scoreTF" destination="BEE-OR-rs7" id="abi-nW-MoN"/>
+                                            <outlet property="segmentAGradeLevel" destination="nJR-Xn-mJv" id="YgE-qs-EUG"/>
+                                            <outlet property="segmentHDGradeLevel" destination="FoM-ok-ae7" id="kbG-uH-84U"/>
                                             <outlet property="studentAvatar" destination="cG4-h1-bIr" id="1tF-aX-mj9"/>
                                             <outlet property="studentIDLabel" destination="nnq-9M-yeI" id="CvK-nB-jj6"/>
                                             <outlet property="studentNameLabel" destination="a1F-91-zoT" id="GjQ-oL-hT8"/>

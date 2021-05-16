@@ -158,7 +158,7 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
 
             self.selectedWeekLabel.text = self.selectedWeek
             self.selectedMarkingSchemeLabel.text = self.selectedMarkingScheme
-            
+
             // Reload data after selecting weeks or marking schemes
             self.tableView.reloadData()
 
@@ -262,12 +262,12 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
 
             studentCell.selectedWeek = self.selectedWeek
             studentCell.selectedScheme = markingScheme.schemes[self.selectedWeek]
-            
+
             // Display student's image
-            if let avatarData = student.avatar{
-                let dataDecoded = Data(base64Encoded:avatarData, options: .ignoreUnknownCharacters)
+            if let avatarData = student.avatar {
+                let dataDecoded = Data(base64Encoded: avatarData, options: .ignoreUnknownCharacters)
                 studentCell.studentAvatar.image = UIImage(data: dataDecoded!)
-            }else{
+            } else {
                 studentCell.studentAvatar.image = UIImage(systemName: "person.fill")
             }
 
@@ -277,7 +277,7 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
                 studentCell.gradeHDView.isHidden = true
                 studentCell.gradeAView.isHidden = true
                 studentCell.scoreOutOfView.isHidden = true
-                studentCell.multipleCheckpointView.isHidden=true
+                studentCell.multipleCheckpointView.isHidden = true
                 if studentCell.grade == 0.0 {
                     studentCell.attendanceCheck.isOn = false
                 } else if studentCell.grade == 100.0 {
@@ -288,75 +288,63 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
                 studentCell.gradeHDView.isHidden = true
                 studentCell.gradeAView.isHidden = true
                 studentCell.scoreOutOfView.isHidden = true
-                studentCell.multipleCheckpointView.isHidden=false
-                switch studentCell.grade{
+                studentCell.multipleCheckpointView.isHidden = false
+                switch studentCell.grade {
                 case 100:
-                    studentCell.checkpoint1Switch.isOn=true
-                    studentCell.checkpoint2Label.isEnabled=true
-                    studentCell.checkpoint2Switch.isEnabled=true
-                    studentCell.checkpoint2Switch.isOn=true
+                    studentCell.checkpoint1Switch.isOn = true
+                    studentCell.checkpoint2Label.isEnabled = true
+                    studentCell.checkpoint2Switch.isEnabled = true
+                    studentCell.checkpoint2Switch.isOn = true
                 case 50:
-                    studentCell.checkpoint1Switch.isOn=true
-                    studentCell.checkpoint2Label.isEnabled=true
-                    studentCell.checkpoint2Switch.isEnabled=true
-                    studentCell.checkpoint2Switch.isOn=false
+                    studentCell.checkpoint1Switch.isOn = true
+                    studentCell.checkpoint2Label.isEnabled = true
+                    studentCell.checkpoint2Switch.isEnabled = true
+                    studentCell.checkpoint2Switch.isOn = false
                 case 0:
-                    studentCell.checkpoint1Switch.isOn=false
-                    studentCell.checkpoint2Label.isEnabled=false
-                    studentCell.checkpoint2Switch.isEnabled=false
-                    studentCell.checkpoint2Switch.isOn=false
-                default:break;
+                    studentCell.checkpoint1Switch.isOn = false
+                    studentCell.checkpoint2Label.isEnabled = false
+                    studentCell.checkpoint2Switch.isEnabled = false
+                    studentCell.checkpoint2Switch.isOn = false
+                default: break;
                 }
             case "Grade Level (HD)":
                 studentCell.attendanceView.isHidden = true
                 studentCell.gradeHDView.isHidden = false
                 studentCell.gradeAView.isHidden = true
                 studentCell.scoreOutOfView.isHidden = true
-                studentCell.multipleCheckpointView.isHidden=true
+                studentCell.multipleCheckpointView.isHidden = true
                 switch studentCell.grade {
                 case 100:
-                    studentCell.HDGradeIndex = 0
-                    studentCell.btnHDGradeLevel.setTitle("HD+", for: .normal)
+                    studentCell.segmentHDGradeLevel.selectedSegmentIndex = 0
                 case 80:
-                    studentCell.HDGradeIndex = 1
-                    studentCell.btnHDGradeLevel.setTitle("HD", for: .normal)
+                    studentCell.segmentHDGradeLevel.selectedSegmentIndex = 1
                 case 70:
-                    studentCell.HDGradeIndex = 2
-                    studentCell.btnHDGradeLevel.setTitle("DN", for: .normal)
+                    studentCell.segmentHDGradeLevel.selectedSegmentIndex = 2
                 case 60:
-                    studentCell.HDGradeIndex = 3
-                    studentCell.btnHDGradeLevel.setTitle("CR", for: .normal)
+                    studentCell.segmentHDGradeLevel.selectedSegmentIndex = 3
                 case 50:
-                    studentCell.HDGradeIndex = 4
-                    studentCell.btnHDGradeLevel.setTitle("PP", for: .normal)
+                    studentCell.segmentHDGradeLevel.selectedSegmentIndex = 4
                 case 0:
-                    studentCell.HDGradeIndex = 5
-                    studentCell.btnHDGradeLevel.setTitle("NN", for: .normal)
-                default:
-                    break
+                    studentCell.segmentHDGradeLevel.selectedSegmentIndex = 5
+                default: break
                 }
             case "Grade Level (A)":
                 studentCell.attendanceView.isHidden = true
                 studentCell.gradeHDView.isHidden = true
                 studentCell.gradeAView.isHidden = false
                 studentCell.scoreOutOfView.isHidden = true
-                studentCell.multipleCheckpointView.isHidden=true
+                studentCell.multipleCheckpointView.isHidden = true
                 switch studentCell.grade {
                 case 100:
-                    studentCell.AGradeIndex = 0
-                    studentCell.btnAGradeLevel.setTitle("A", for: .normal)
+                    studentCell.segmentAGradeLevel.selectedSegmentIndex = 0
                 case 80:
-                    studentCell.AGradeIndex = 1
-                    studentCell.btnAGradeLevel.setTitle("B", for: .normal)
+                    studentCell.segmentAGradeLevel.selectedSegmentIndex = 1
                 case 70:
-                    studentCell.AGradeIndex = 2
-                    studentCell.btnAGradeLevel.setTitle("C", for: .normal)
+                    studentCell.segmentAGradeLevel.selectedSegmentIndex = 2
                 case 60:
-                    studentCell.AGradeIndex = 3
-                    studentCell.btnAGradeLevel.setTitle("D", for: .normal)
+                    studentCell.segmentAGradeLevel.selectedSegmentIndex = 3
                 case 0:
-                    studentCell.AGradeIndex = 4
-                    studentCell.btnAGradeLevel.setTitle("F", for: .normal)
+                    studentCell.segmentAGradeLevel.selectedSegmentIndex = 4
                 default:
                     break;
                 }
@@ -365,7 +353,7 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
                 studentCell.gradeHDView.isHidden = true
                 studentCell.gradeAView.isHidden = true
                 studentCell.scoreOutOfView.isHidden = false
-                studentCell.multipleCheckpointView.isHidden=true
+                studentCell.multipleCheckpointView.isHidden = true
                 studentCell.displayScoreOutOf.text = String(studentCell.grade)
             default: break
             }
