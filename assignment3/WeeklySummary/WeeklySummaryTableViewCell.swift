@@ -8,12 +8,12 @@
 import UIKit
 
 class WeeklySummaryTableViewCell: UITableViewCell {
-    
+
     @IBOutlet var studentNameLabel: UILabel!
     @IBOutlet var studentIDLabel: UILabel!
     @IBOutlet var studentGradeLabel: UILabel!
-    
-    
+
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

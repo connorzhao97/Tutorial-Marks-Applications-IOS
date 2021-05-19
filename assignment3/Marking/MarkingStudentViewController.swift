@@ -258,6 +258,7 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
             studentCell.selectedScheme = markingScheme.schemes[self.selectedWeek]
 
             // Display student's image
+            // https://stackoverflow.com/questions/44780937/storing-and-retrieving-image-in-sqlite-with-swift
             if let avatarData = student.avatar {
                 let dataDecoded = Data(base64Encoded: avatarData, options: .ignoreUnknownCharacters)
                 studentCell.studentAvatar.image = UIImage(data: dataDecoded!)
@@ -378,8 +379,8 @@ class MarkingStudentViewController: UIViewController, UITableViewDelegate, UITab
                     self.selectedWeekLabel.text = self.selectedWeek
                     self.selectedMarkingSchemeLabel.text = self.selectedMarkingScheme
                     markingScheme.schemes[self.selectedWeek] = self.selectedMarkingScheme
-                    //TODO: Set all score to 0
-                    //https://firebase.google.com/docs/firestore/manage-data/transactions#batched-writes
+                    // Set all score to 0
+                    // https://firebase.google.com/docs/firestore/manage-data/transactions#batched-writes
                     let batch = db.batch()
                     for student in students {
                         let stuRef = studentCollection.document(student.id!)

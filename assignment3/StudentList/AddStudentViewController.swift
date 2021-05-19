@@ -9,21 +9,21 @@ import UIKit
 import Firebase
 import FirebaseFirestoreSwift
 
-class AddStudentViewController: UIViewController,UINavigationControllerDelegate & UIImagePickerControllerDelegate{
+class AddStudentViewController: UIViewController, UINavigationControllerDelegate & UIImagePickerControllerDelegate {
 
     @IBOutlet var studentNameTF: UITextField!
     @IBOutlet var studentIDTF: UITextField!
     @IBOutlet var studentAvatar: UIImageView!
-    
+
     var alertLoading: UIAlertController?
-    var avatarData:Data?=nil
+    var avatarData: Data? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
+
     @IBAction func takeAPicture(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let imagePicker = UIImagePickerController()
@@ -35,7 +35,7 @@ class AddStudentViewController: UIViewController,UINavigationControllerDelegate 
             print("Photo library not available")
         }
     }
-    
+
 
     // MARK: - Add student
     @IBAction func addNewStudent(_ sender: Any) {
@@ -56,14 +56,14 @@ class AddStudentViewController: UIViewController,UINavigationControllerDelegate 
             self.present(alert, animated: true, completion: nil)
             addable = false
         }
-        
+
         if addable {
-            var avatarTempData: Data?=nil
-            if let avatar = avatarData{
+            var avatarTempData: Data? = nil
+            if let avatar = avatarData {
                 avatarTempData = avatar
             }
             // If student name or ID are not empty
-            var student = Student(studentName: studentName, studentID: Int(studentID) ?? -1, avatar: avatarTempData, grades: ["week1": 0.0, "week2":0.0, "week3":0.0, "week4":0.0, "week5":0.0, "week6":0.0, "week7":0.0, "week8":0.0, "week9":0.0, "week10":0.0, "week11":0.0, "week12":0.0])
+            var student = Student(studentName: studentName, studentID: Int(studentID) ?? -1, avatar: avatarTempData, grades: ["week1": 0.0, "week2": 0.0, "week3": 0.0, "week4": 0.0, "week5": 0.0, "week6": 0.0, "week7": 0.0, "week8": 0.0, "week9": 0.0, "week10": 0.0, "week11": 0.0, "week12": 0.0])
 
             // https://stackoverflow.com/questions/27960556/loading-an-overlay-when-running-long-tasks-in-ios
             // Creating loading indicator
@@ -100,28 +100,28 @@ class AddStudentViewController: UIViewController,UINavigationControllerDelegate 
         }
     }
 
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         self.performSegue(withIdentifier: "dismissSegue", sender: self)
     }
-    
-    
+
+
     // MARK: - Image Picker functions
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         //https://www.hackingwithswift.com/example-code/uikit/how-to-take-a-photo-using-the-camera-and-uiimagepickercontroller
         // Original Image is too large so firebase cannot save
-        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             studentAvatar.image = image
-            
+
             //https://stackoverflow.com/questions/44780937/storing-and-retrieving-image-in-sqlite-with-swift
             //https://developer.apple.com/documentation/uikit/uiimage/1624115-jpegdata
             let imageData = image.jpegData(compressionQuality: 0)
-           avatarData = imageData?.base64EncodedData(options: .lineLength64Characters)
+            avatarData = imageData?.base64EncodedData(options: .lineLength64Characters)
             dismiss(animated: true, completion: nil)
         }
     }
-    
+
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }

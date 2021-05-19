@@ -11,7 +11,7 @@ class StudentListTableViewCell: UITableViewCell {
     @IBOutlet var studentNameLabel: UILabel!
     @IBOutlet var studentIDLabel: UILabel!
     @IBOutlet var studentAvatar: UIImageView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -10,7 +10,7 @@ import UIKit
 class StudentDetailTableViewCell: UITableViewCell {
     @IBOutlet var detailWeekLabel: UILabel!
     @IBOutlet var detailGradeLabel: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -34,7 +34,7 @@ class StudentListViewController: UIViewController, UISearchBarDelegate, UITableV
 
     override func viewWillAppear(_ animated: Bool) {
         searchStudents = students
-        searchBar.text=""
+        searchBar.text = ""
         self.tableView.reloadData()
     }
 
@@ -112,7 +112,7 @@ class StudentListViewController: UIViewController, UISearchBarDelegate, UITableV
             if let avatarData = student.avatar {
                 let dataDecoded = Data(base64Encoded: avatarData, options: .ignoreUnknownCharacters)
                 studentCell.studentAvatar.image = UIImage(data: dataDecoded!)
-            }else{
+            } else {
                 studentCell.studentAvatar.image = UIImage(systemName: "person.fill")
             }
         }
@@ -169,13 +169,14 @@ class StudentListViewController: UIViewController, UISearchBarDelegate, UITableV
             let selectedStudent = searchStudents[indexPath.row]
 
             // Pass the original student index (not searched student list index)
+            // https://developer.apple.com/documentation/swift/array/2994722-firstindex
             let originalIndex = students.firstIndex(where: { student in
                 return student.id == selectedStudent.id
             })
 
             studentDetailViewController.student = selectedStudent
             studentDetailViewController.studentIndex = originalIndex!
-            
+
             // Dismiss keyboard
             // https://stackoverflow.com/questions/29925373/how-to-make-keyboard-dismiss-when-i-press-out-of-searchbar-on-swift
             searchBar.endEditing(true)
