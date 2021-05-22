@@ -304,13 +304,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Nr-9J-ceb">
-                                <rect key="frame" x="130" y="344.33333333333331" width="168" height="30"/>
+                                <rect key="frame" x="120" y="344.33333333333331" width="188" height="30"/>
                                 <color key="backgroundColor" name="AccentColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="zrj-BX-Wx2"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Take A Picture" image="camera" catalog="system"/>
+                                <state key="normal" title="Choose A Picture" image="camera" catalog="system"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="10"/>
@@ -328,8 +328,8 @@
                             <constraint firstItem="ue8-ET-Rra" firstAttribute="leading" secondItem="6Dm-VY-Nrg" secondAttribute="leading" constant="58" id="Mz4-bO-VzV"/>
                             <constraint firstItem="6Dm-VY-Nrg" firstAttribute="trailing" secondItem="4gH-WD-bZD" secondAttribute="trailing" constant="58" id="Ryk-VH-EEN"/>
                             <constraint firstItem="1FH-f0-1E3" firstAttribute="top" secondItem="6Dm-VY-Nrg" secondAttribute="top" constant="37" id="SCn-fW-OM3"/>
-                            <constraint firstItem="6Dm-VY-Nrg" firstAttribute="trailing" secondItem="3Nr-9J-ceb" secondAttribute="trailing" constant="130" id="Sgf-R1-0bR"/>
-                            <constraint firstItem="3Nr-9J-ceb" firstAttribute="leading" secondItem="6Dm-VY-Nrg" secondAttribute="leading" constant="130" id="a7z-lJ-Mrb"/>
+                            <constraint firstItem="6Dm-VY-Nrg" firstAttribute="trailing" secondItem="3Nr-9J-ceb" secondAttribute="trailing" constant="120" id="Sgf-R1-0bR"/>
+                            <constraint firstItem="3Nr-9J-ceb" firstAttribute="leading" secondItem="6Dm-VY-Nrg" secondAttribute="leading" constant="120" id="a7z-lJ-Mrb"/>
                             <constraint firstItem="3Nr-9J-ceb" firstAttribute="top" secondItem="1FH-f0-1E3" secondAttribute="bottom" constant="16" id="bbj-M9-rsv"/>
                             <constraint firstItem="kuw-jq-Xa8" firstAttribute="leading" secondItem="6Dm-VY-Nrg" secondAttribute="leading" constant="58" id="bvQ-NE-Hat"/>
                             <constraint firstItem="4gH-WD-bZD" firstAttribute="leading" secondItem="6Dm-VY-Nrg" secondAttribute="leading" constant="58" id="cMt-BG-uuo"/>
@@ -445,13 +445,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="II9-17-0xi">
-                                <rect key="frame" x="130" y="257.33333333333331" width="168" height="30"/>
+                                <rect key="frame" x="120" y="257.33333333333331" width="188" height="30"/>
                                 <color key="backgroundColor" name="AccentColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="hPr-8d-85Y"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Take A Picture" image="camera" catalog="system"/>
+                                <state key="normal" title="Choose A Picture" image="camera" catalog="system"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="10"/>
@@ -471,7 +471,7 @@
                         <constraints>
                             <constraint firstItem="mGi-4g-rS7" firstAttribute="top" secondItem="RS5-9K-yWv" secondAttribute="bottom" constant="28" id="32p-kN-zTc"/>
                             <constraint firstItem="Oy9-Um-Cvp" firstAttribute="top" secondItem="II9-17-0xi" secondAttribute="bottom" constant="8" id="6nL-B4-U0n"/>
-                            <constraint firstItem="II9-17-0xi" firstAttribute="leading" secondItem="AsC-co-1SC" secondAttribute="leading" constant="130" id="9wa-B3-B2e"/>
+                            <constraint firstItem="II9-17-0xi" firstAttribute="leading" secondItem="AsC-co-1SC" secondAttribute="leading" constant="120" id="9wa-B3-B2e"/>
                             <constraint firstItem="XBM-pK-yTl" firstAttribute="bottom" secondItem="AsC-co-1SC" secondAttribute="bottom" id="DrK-hE-fBD"/>
                             <constraint firstItem="AsC-co-1SC" firstAttribute="trailing" secondItem="mQQ-Dq-PJS" secondAttribute="trailing" constant="57" id="Epd-Fa-XYV"/>
                             <constraint firstItem="XBM-pK-yTl" firstAttribute="leading" secondItem="AsC-co-1SC" secondAttribute="leading" id="HHg-Y4-zH9"/>
@@ -484,7 +484,7 @@
                             <constraint firstItem="mQQ-Dq-PJS" firstAttribute="leading" secondItem="AsC-co-1SC" secondAttribute="leading" constant="58" id="eKJ-sn-QiX"/>
                             <constraint firstItem="EIg-bR-41t" firstAttribute="leading" secondItem="AsC-co-1SC" secondAttribute="leading" constant="58" id="fY1-D9-u5h"/>
                             <constraint firstItem="mQQ-Dq-PJS" firstAttribute="top" secondItem="Oy9-Um-Cvp" secondAttribute="bottom" constant="2" id="l5h-T2-YT0"/>
-                            <constraint firstItem="AsC-co-1SC" firstAttribute="trailing" secondItem="II9-17-0xi" secondAttribute="trailing" constant="130" id="lwu-Yx-g3d"/>
+                            <constraint firstItem="AsC-co-1SC" firstAttribute="trailing" secondItem="II9-17-0xi" secondAttribute="trailing" constant="120" id="lwu-Yx-g3d"/>
                             <constraint firstItem="mGi-4g-rS7" firstAttribute="leading" secondItem="EIg-bR-41t" secondAttribute="trailing" constant="19" id="q2T-wb-XMD"/>
                             <constraint firstItem="RS5-9K-yWv" firstAttribute="leading" secondItem="AsC-co-1SC" secondAttribute="leading" constant="58" id="sQG-nm-LtP"/>
                             <constraint firstItem="II9-17-0xi" firstAttribute="top" secondItem="u95-PB-WZ9" secondAttribute="bottom" constant="8" id="vkE-4W-7Pm"/>
@@ -696,7 +696,6 @@
                                                                     </connections>
                                                                 </segmentedControl>
                                                             </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
                                                                 <constraint firstItem="nJR-Xn-mJv" firstAttribute="leading" secondItem="KTn-t3-Iif" secondAttribute="leading" constant="70" id="1fE-9Q-x7d"/>
                                                                 <constraint firstAttribute="bottom" secondItem="nJR-Xn-mJv" secondAttribute="bottom" constant="14" id="c3l-lr-zdG"/>

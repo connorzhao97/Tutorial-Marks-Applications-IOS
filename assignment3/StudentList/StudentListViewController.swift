@@ -109,6 +109,7 @@ class StudentListViewController: UIViewController, UISearchBarDelegate, UITableV
             studentCell.studentNameLabel.text = student.studentName
             studentCell.studentIDLabel.text = String(student.studentID)
             // Display student's image
+            // https://stackoverflow.com/questions/44780937/storing-and-retrieving-image-in-sqlite-with-swift
             if let avatarData = student.avatar {
                 let dataDecoded = Data(base64Encoded: avatarData, options: .ignoreUnknownCharacters)
                 studentCell.studentAvatar.image = UIImage(data: dataDecoded!)

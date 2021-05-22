@@ -21,10 +21,9 @@ class StudentDetailViewController: UIViewController,UIImagePickerControllerDeleg
     var alertLoading: UIAlertController?
     var avatarData: Data? = nil
 
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        //https://www.codingexplorer.com/getting-started-uitableview-swift/
         tableView.delegate = self
         tableView.dataSource = self
         if let displayStudent = student {
@@ -32,6 +31,7 @@ class StudentDetailViewController: UIViewController,UIImagePickerControllerDeleg
             studentIDTF.text = String(displayStudent.studentID)
             
             // Display student's image
+            // https://stackoverflow.com/questions/44780937/storing-and-retrieving-image-in-sqlite-with-swift
             if let avatarData = displayStudent.avatar{
                 let dataDecoded = Data(base64Encoded:avatarData, options: .ignoreUnknownCharacters)
                 studentAvatar.image = UIImage(data: dataDecoded!)
@@ -105,8 +105,6 @@ class StudentDetailViewController: UIViewController,UIImagePickerControllerDeleg
             } catch {
                 print("Error updating document \(error)")
             }
-
-            //TODO: avatar url, grades
         }
     }
 
