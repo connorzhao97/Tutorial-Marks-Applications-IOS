@@ -22,9 +22,9 @@ The IOS app lets tutors give marks to each student in different marking schemes,
     > Users can add new students with student's information and photo
 - WeeklySummary
   - WeeklySummaryViewController.swift & WeeklySummaryTableViewCell.swift
-    > Users can review all students' scores and an average score of all students of each week in a recyclerview
+    > Users can review all students' scores and an average score of all students of each week in a table view
 - Marking
   - MarkingStudentViewController.swift & MarkingStudentTableViewCell.swift
-    > Users can mark students with different types of marking schemes (Attendance, Multiple Checkpoints, Score out of X, Grade Level (HD or A))  in a recyclerview
+    > Users can mark students with different types of marking schemes (Attendance, Multiple Checkpoints, Score out of X, Grade Level (HD or A))  in a table view
 - TabBarViewController.swift
   > Marking, student list, and weekly summary panels will displayed in the tab view
